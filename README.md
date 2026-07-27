@@ -1,6 +1,6 @@
 ## Preview
 <p align="center">
-  <img src="Assets/Under-Construction.jpg" alt="Health IQ" width="100%">
+  <img src="Assets/UC.jpg" alt="Health IQ" width="100%">
 </p>
 
 # Health-IQ
