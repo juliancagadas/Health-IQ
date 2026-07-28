@@ -1,0 +1,10 @@
+header {
+  display: flex;
+  flex-direction: row;
+}
+
+.left-section {
+  display: flex;
+  flex-direction: row;
+}
+
