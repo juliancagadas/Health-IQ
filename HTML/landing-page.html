@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="../CSS/Landing-Page/header.css">
+    <link rel="stylesheet" href="../CSS/Landing-Page/section.css">
     <title>Health IQ Landing Page</title>
 </head>
 <body>
@@ -12,7 +17,7 @@
 
         <header>
             <div class="header-left-section">
-                <img class="heart-icon" src="logo.png" alt="Health IQ Logo">
+                <img class="heart-rate-icon" src="../Assets/heart-rate-icon.png" alt="Health IQ Logo">
                 <div class="two-paragraph">
                     <p class="health-paragraph">Health<span class="iq">IQ</span></p>
                     <p class="fuzzy-paragraph">Fuzzy Logic Health Assistant</p>
@@ -20,25 +25,29 @@
             </div>
         
             <div class="header-right-section">
-                <button class="home">Home</button>
-                <button class="about">About</button>
-                <button class="how-it-works">How It Works</button>
-                <button class="disclaimer">Disclaimer</button>
+                <button class="nav active">Home</button>
+                <button class="nav">About</button>
+                <button class="nav">How It Works</button>
+                <button class="nav">Disclaimer</button>
+
+                <span class="nav-indicator"></span>
             </div>
 
         </header>
 
         <section>
             <div class="mid-left-section">
-                <p class="">Understand Your Health, <span class="smarter-paragraph">Smarter.</span></p>
-                <p>HealthIQ uses Fuzzy Logic to assess your symtoms and via signs, providing personalized insights and recommendations to help you take better care of your well-being.</p>
-                <button class="started-assistant"><img class="heart-icon">Start Health Assessment</button>
+                <p class="term">Understand Your Health, <span class="smarter-text">Smarter.</span></p>
+                <p class="health-iq-desc">HealthIQ uses Fuzzy Logic to assess your symtoms and via signs, providing personalized insights and recommendations to help you take better care of your well-being.</p>
+                <button class="started-button"><img class="heart-icon" src="../Assets/heart-rate-icon-white.png">Start Health Assessment<img class="arrow-icon" src="../Assets/arrow-icon.svg"></button>
             </div>
             <div class="mid-right-section">
                 <img class="health-assistant-image" src="../Assets/health-iq-pic.png" alt="Health Assistant Image">
             </div>
         </section>
     </main>
+
+    <script src="../JS/header-slider.js"></script>
 
 </body>
 </html>
