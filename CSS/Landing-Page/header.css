@@ -20,8 +20,15 @@ header {
 }
 
 .heart-rate-icon {
-  height: 7.3vh;
-  width: 4vw;
+  height: auto;
+  width: 100%;
+}
+
+.heart-rate-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.7vw;
 }
 
 .header-right-section {

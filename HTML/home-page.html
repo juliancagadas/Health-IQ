@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health IQ Assessment Page</title>
+
+    <link rel="stylesheet" href="../CSS/Home-Page/body-temperature.css">
+    <link rel="stylesheet" href="../CSS/Home-Page/heart-rate.css">
+</head>
+<body>
+    <main>
+
+      <header>
+        <div class="vital-text-container">
+          <img class="vital-sign-pic" src="">
+          <p>Vital Signs</p>
+        </div>
+
+        <div class="vital-signs-container">
+
+          <div class="body-temp-container">
+            <div>
+              <img class="body-temp-pic">
+              <p>Body Temperature (°C)</p>
+            </div>
+            
+            <div class="body-temperature-slider">
+              <input
+              class="body-slider"
+              type="range"
+              min="35"
+              max="40"
+              step="0.1"
+              value="35">
+              <div class="body-temperature-value">
+                35 °C
+              </div>
+              <div class="body-temperature-status">
+                Test
+              </div>
+            </div>
+          </div>
+
+
+          <div class="heart-rate-container">
+            <div>
+              <img class="heart-rate-pic">
+              <p>Heart Rate (BPM)</p>
+            </div>
+            
+            <div class="heart-rate-slider">
+              <input
+              class="heart-slider"
+              type="range"
+              min="30"
+              max="150"
+              value="30">
+
+              <div class="heart-rate-value">
+                30 BPM
+              </div>
+
+              <div class="heart-rate-status">
+                Low
+              </div>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </header>
+
+    </main>
+
+    <script src="../JS/Home-Page/body-temperature.js"></script>
+    <script src="../JS/Home-Page/heart-rate.js"></script>
+
+</body>
+</html>
