@@ -14,19 +14,16 @@ bodyslider.addEventListener("input", () => {
     if (temp <= 35) {
     low = 1;
     converted = low * 100;
-    valueStatus.textContent = converted.toFixed(0) + " % Low";
     }
 
     else if (temp >= 37) {
     low = 0;
     converted = low * 100;
-    valueStatus.textContent = converted.toFixed(0) + " % Low";
     }
 
     else {
     low = (37 - temp) / (37 - 35);
     converted = low * 100;
-    valueStatus.textContent = converted.toFixed(0) + " % Low";
     }
 
 
@@ -34,23 +31,41 @@ bodyslider.addEventListener("input", () => {
     if (temp <= 36) {
         normal = 0;
         converted = normal * 100;
-        valueStatus.textContent = converted.toFixed(0) + " % Normal";
     }
 
     else if (temp <= 37) {
         normal = (temp - 36) / (37 - 36);
         converted = normal * 100;
-        valueStatus.textContent = converted.toFixed(0) + " % Normal";
+        //valueStatus.textContent = converted.toFixed(0) + " % Normal";
     }
 
     else if (temp <= 38) {
         normal = (38 - temp) / (38 - 37);
         converted = normal * 100;
-        valueStatus.textContent = converted.toFixed(0) + " % Normal";
     }
 
     else {
         normal = 0;
     }
 
+
+    //High Side
+    if (temp <= 37) {
+        high = 0;
+        converted = high * 100;
+    }
+
+    else if (temp <= 38) {
+        high = (temp - 37) / (38 - 37);
+        converted = high * 100;
+    }
+
+    else if (temp <= 39) {
+        high = (39 - temp) / (38 - 37);
+        converted = high * 100;
+    }
+
+    else {
+        high = 1;
+    }
 });
