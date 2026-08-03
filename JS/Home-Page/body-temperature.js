@@ -1,51 +1,58 @@
-const bodyslider = document.querySelector(".body-slider");
+const bodySlider = document.querySelector(".body-slider");
 const valueBox = document.querySelector(".body-temperature-value");
 const valueStatus = document.querySelector(".body-temperature-status");
 
-let low = 0;
-let normal = 0;
-let high = 0;
 
-bodyslider.addEventListener("input", () => {
-    const temp = Number(bodyslider.value);
-    valueBox.textContent = bodyslider.value + " °C";
+bodySlider.addEventListener("input", () => {
+    const temp = Number(bodySlider.value);
+    valueBox.textContent = bodySlider.value + " °C";
 
     //low Side
     if (temp <= 35) {
     low = 1;
     converted = low * 100;
+    console.log(converted.toFixed(0) + " % Low");
     }
 
     else if (temp >= 37) {
     low = 0;
     converted = low * 100;
+    console.log(converted.toFixed(0) + " % Low");
     }
 
     else {
-    low = (37 - temp) / (37 - 35);
+    low = (37 - temp) / 2;
     converted = low * 100;
+    console.log(converted.toFixed(0) + " % Low");
     }
 
 
     //Normal Side
-    if (temp <= 36) {
-        normal = 0;
-        converted = normal * 100;
+    if (temp <= 35) {
+    normal = 0;
+    converted = normal * 100;
+    console.log(converted.toFixed(0) + " % Normal");
     }
 
+    //Left side
     else if (temp <= 37) {
-        normal = (temp - 36) / (37 - 36);
+        normal = (temp - 35) / 2;
         converted = normal * 100;
-        //valueStatus.textContent = converted.toFixed(0) + " % Normal";
+        console.log(converted.toFixed(0) + " % Normal");
     }
 
-    else if (temp <= 38) {
-        normal = (38 - temp) / (38 - 37);
+    //Right side
+    else if (temp <= 39) {
+        normal = (39 - temp) / 2;
         converted = normal * 100;
+        console.log(converted.toFixed(0) + " % Normal");
     }
 
+    //Above 39
     else {
         normal = 0;
+        converted = normal * 100;
+        console.log(converted.toFixed(0) + " % Normal");
     }
 
 
@@ -53,19 +60,18 @@ bodyslider.addEventListener("input", () => {
     if (temp <= 37) {
         high = 0;
         converted = high * 100;
+        console.log(converted.toFixed(0) + " % High");
     }
-
-    else if (temp <= 38) {
-        high = (temp - 37) / (38 - 37);
-        converted = high * 100;
-    }
-
+    
     else if (temp <= 39) {
-        high = (39 - temp) / (38 - 37);
+        high = (temp - 37) / 2;
         converted = high * 100;
+        console.log(converted.toFixed(0) + " % High");
     }
 
     else {
         high = 1;
+        converted = high * 100;
+        console.log(converted.toFixed(0) + " % High");
     }
 });

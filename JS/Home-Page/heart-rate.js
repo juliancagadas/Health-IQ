@@ -1,28 +1,78 @@
-
 const heartSlider = document.querySelector(".heart-slider");
 const heartvalueBox = document.querySelector(".heart-rate-value");
 const heartvalueStatus = document.querySelector(".heart-rate-status");
 
+
 heartSlider.addEventListener("input", () => {
-    heartvalueBox.textContent = heartSlider.value;
+    const heartRate = Number(heartSlider.value);
+    heartvalueBox.textContent = heartSlider.value + " BPM";
+
+    //low Side
+    if (heartRate <= 30) {
+        low = 1;
+        converted = low * 100;
+        console.log(converted.toFixed(0) + " % Low");
+    }
+
+    else if (heartRate >= 70) {
+        low = 0;
+        converted = low * 100;
+        console.log(converted.toFixed(0) + " % Low");
+    }
+
+    //Main logic for low side
+    else {
+        low = (70 - heartRate) / 40;
+        converted = low * 100;
+        console.log(converted.toFixed(0) + " % Low");
+    }
 
 
+    //Normal Side
+    if (heartRate <= 30) {
+        normal = 0;
+        converted = normal * 100;
+        console.log(converted.toFixed(0) + " % Normal");
+    }
 
-    console.log("Working");
+    //Left side //Goes Up
+    else if (heartRate <= 70) {
+        normal = (heartRate - 30) / 40;
+        converted = normal * 100;
+        console.log(converted.toFixed(0) + " % Normal");
+    }
 
-    if (heartSlider.value <= 60) {
-    heartvalueStatus.textContent = "Low";
-    heartvalueStatus.style.color = "yellow";
-}
+    //Right side //Goes Down
+    else if (heartRate <= 110) {
+        normal = (110 - heartRate) / 40;
+        converted = normal * 100;
+        console.log(converted.toFixed(0) + " % Normal");
+    }
 
-    if (heartSlider.value > 60 && heartSlider.value <= 100) {
-    heartvalueStatus.textContent = "Normal";
-    heartvalueStatus.style.color = "green";
-}
+    else {
+        normal = 0;
+        converted = normal * 100;
+        console.log(converted.toFixed(0) + " % Normal");
+    }
 
-    if (heartSlider.value > 100) {
-    heartvalueStatus.textContent = "High";
-    heartvalueStatus.style.color = "red";
-}
+
+    //High Side
+    if (heartRate <= 70) {
+        high = 0;
+        converted = high * 100;
+        console.log(converted.toFixed(0) + " % High");
+    }
+    
+    else if (heartRate <= 110) {
+        high = (heartRate - 70) / 40;
+        converted = high * 100;
+        console.log(converted.toFixed(0) + " % High");
+    }
+
+    else {
+        high = 1;
+        converted = high * 100;
+        console.log(converted.toFixed(0) + " % High");
+    }
 
 });
