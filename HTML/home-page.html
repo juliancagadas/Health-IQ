@@ -7,23 +7,55 @@
 
     <link rel="stylesheet" href="../CSS/Home-Page/body-temperature.css">
     <link rel="stylesheet" href="../CSS/Home-Page/heart-rate.css">
-    <link rel="stylesheet" href="../CSS/Home-Page/head-ache.css">
+    <link rel="stylesheet" href="../CSS/Home-Page/symptoms.css">
+    <link rel="stylesheet" href="../CSS/Home-Page/body.css">
+    <link rel="stylesheet" href="../CSS/Home-Page/inside-vital-sign.css">
+
+    <link rel="stylesheet" href="../CSS/Landing-Page/header.css">
 </head>
 <body>
     <main>
 
-      <header>
+      <h1>
+            <div class="header-left-section">
+            
+            <div class="heart-rate-icon-container">
+                <img class="heart-rate-icon" src="../Assets/heart-rate-icon.png" alt="Health IQ Logo">
+            </div>
+                <div class="two-paragraph">
+                    <p class="health-paragraph">Health<span class="iq">IQ</span></p>
+                    <p class="fuzzy-paragraph">Fuzzy Logic Health Assistant</p>
+                </div>
+            </div>
+        
+            <div class="header-right-section">
+                <button class="nav active" onclick="goToLanding()">Home</button>
+                <button class="nav">About</button>
+                <button class="nav">How It Works</button>
+                <button class="nav">Disclaimer</button>
+
+                <span class="nav-indicator"></span>
+            </div>
+
+        </h1>
+
+
+
+      <header class="vital-signs-header">
+
         <div class="vital-text-container">
-          <img class="vital-sign-pic" src="">
-          <p>Vital Signs</p>
+          <p class="vital-text">Vital Signs</p>
+          <p class="vital-guide-description">Set your current readings using the sliders below.</p>
         </div>
 
         <div class="vital-signs-container">
 
           <div class="body-temp-container">
-            <div>
-              <img class="body-temp-pic">
-              <p>Body Temperature (°C)</p>
+            <div class="body-pic-text-container">
+              <div class="body-pic-container">
+                <img class="body-temp-pic" src="../Assets/temp-icon.jpg">
+              </div>
+              <p class="body-temp-text">Body Temperature (°C)</p>
             </div>
             
             <div class="body-temperature-slider">
@@ -33,18 +65,20 @@
               min="35"
               max="40"
               step="0.1"
-              value="35">
+              value="37">
               <div class="body-temperature-value">
-                35 °C
+                37 °C
               </div>
             </div>
           </div>
 
 
           <div class="heart-rate-container">
-            <div>
-              <img class="heart-rate-pic">
-              <p>Heart Rate (BPM)</p>
+            <div class="heart-pic-text-container">
+              <div class="heart-pic-container">
+                <img class="heart-rate-pic" src="../Assets/bpm-icon.jpg">
+              </div>
+              <p class="heart-rate-text">Heart Rate (BPM)</p>
             </div>
             
             <div class="heart-rate-slider">
@@ -53,19 +87,32 @@
               type="range"
               min="30"
               max="150"
-              value="30">
+              value="50">
 
               <div class="heart-rate-value">
-                30 BPM
+                50 BPM
               </div>
             </div>
           </div>
 
+        </div>
+      </header>
 
+
+
+      <section class="symptoms-section">
+
+        <div class="symptoms-text-container">
+          <p class="symptoms-text">Symptoms</p>
+          <p class="symptoms-guide-description">Rate the severity of each symptom.</p>
+        </div>
+
+        <div class="symptoms-allover-container">
+          <div class="first-symptoms-line">
+            
           <div class="head-ache-container">
-            <div>
-              <img class="head-ache-pic">
-              <p>Head Ache</p>
+            <div class="head-ache-text-container">
+              <p class="head-text">Head Ache</p>
             </div>
             
             <div class="head-ache-slider">
@@ -75,128 +122,129 @@
               min="0"
               max="10"
               step="0.1"
-              value="0">
+              value="2">
 
               <div class="head-ache-value">
-                0
+                2 / 10
               </div>
             </div>
           </div>
 
 
-          <div class="cough-container">
-            <div>
-              <img class="cough-pic">
-              <p>Cough</p>
+          <div class="cough-container head-ache-container">
+            <div class="cough-text-container head-ache-text-container">
+              <p class="cough-text head-text">Cough</p>
             </div>
             
-            <div class="cough-slider">
+            <div class="cough-level-slider head-ache-slider">
               <input
-              class="cough-slider"
+              class="cough-slider head-slider"
               type="range"
               min="0"
               max="10"
-              value="0">
-
-              <div class="cough-value">
-                0
+              step="0.1"
+              value="3">
+              <div class="cough-value head-ache-value">
+                3 / 10
               </div>
             </div>
           </div>
 
 
-          <div class="fatigue-container">
-            <div>
-              <img class="fatigue-pic">
-              <p>Fatigue</p>
+          <div class="fatigue-container head-ache-container">
+            <div class="fatigue-text-container head-ache-text-container">
+              <p class="fatigue-text head-text">Fatigue</p>
             </div>
             
-            <div class="fatigue-slider">
+            <div class="fatigue-level-slider head-ache-slider">
               <input
-              class="fatigue-slider"
+              class="fatigue-slider head-slider"
               type="range"
               min="0"
               max="10"
-              value="0">
+              step="0.1"
+              value="4">
 
-              <div class="fatigue-value">
-                0
+              <div class="fatigue-value head-ache-value">
+                4 / 10
               </div>
             </div>
           </div>
-
-
-          <div class="nausea-container">
-            <div>
-              <img class="nausea-pic">
-              <p>Nausea</p>
-            </div>
-            
-            <div class="nausea-slider">
-              <input
-              class="nausea-slider"
-              type="range"
-              min="0"
-              max="10"
-              value="0">
-
-              <div class="nausea-value">
-                0
-              </div>
-            </div>
-          </div>
-
-
-          <div class="sore-throat-container">
-            <div>
-              <img class="sore-throat-pic">
-              <p>Sore Throat</p>
-            </div>
-            
-            <div class="sore-throat-slider">
-              <input
-              class="sore-throat-slider"
-              type="range"
-              min="0"
-              max="10"
-              value="0">
-
-              <div class="sore-throat-value">
-                0
-              </div>
-            </div>
-          </div>
-
-
-          <div class="difficulty-breathing-container">
-            <div>
-              <img class="difficulty-breathing-pic">
-              <p>Difficulty Breathing</p>
-            </div>
-            
-            <div class="difficulty-breathing-slider">
-              <input
-              class="difficulty-breathing-slider"
-              type="range"
-              min="0"
-              max="10"
-              value="0">
-
-              <div class="difficulty-breathing-value">
-                0
-              </div>
-            </div>
-          </div>
-
-
-
-
-
-
-
         </div>
-      </header>
 
+
+        <div class="second-symptoms-line">
+
+          <div class="nausea-container head-ache-container">
+            <div class="nausea-text-container head-ache-text-container">
+              <p class="nausea-text head-text">Nausea</p>
+            </div>
+            
+            <div class="nausea-level-slider head-ache-slider">
+              <input
+              class="nausea-slider head-slider"
+              type="range"
+              min="0"
+              max="10"
+              step="0.1"
+              value="6">
+
+              <div class="nausea-value head-ache-value">
+                6 / 10
+              </div>
+            </div>
+          </div>
+
+
+          <div class="sore-throat-container head-ache-container">
+            <div class="sore-throat-text-container head-ache-text-container">
+              <p class="sore-text head-text">Sore Throat</p>
+            </div>
+            
+            <div class="sore-level-slider head-ache-slider">
+              <input
+              class="sore-throat-slider head-slider"
+              type="range"
+              min="0"
+              max="10"
+              step="0.1"
+              value="8">
+
+              <div class="sore-throat-value head-ache-value">
+                8 / 10
+              </div>
+            </div>
+          </div>
+
+
+          <div class="difficulty-breathing-container head-ache-container">
+            <div class="difficulty-breathing-text-container head-ache-text-container ">
+              <p class="difficulty-text head-text">Difficulty Breathing</p>
+            </div>
+            
+            <div class="difficulty-breathing-slider head-ache-slider">
+              <input
+              class="difficulty-slider head-slider"
+              type="range"
+              min="0"
+              max="10"
+              step="0.1"
+              value="6">
+
+              <div class="difficulty-breathing-value head-ache-value">
+                6 / 10
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <button class="analyze-health-button">
+        <p class="analyze-text">Analyze Health</p>
+        <img class="arrow-button-icon" src="../Assets/arrow-icon.svg">
+      </button>
+    
     </main>
 
     <script src="../JS/Home-Page/body-temperature.js"></script>
@@ -208,5 +256,8 @@
     <script src="../JS/Home-Page/sore-throat.js"></script>
     <script src="../JS/Home-Page/difficulty-breathing.js"></script>
 
+    <script src="../JS/Landing-Page/header-slider.js"></script>
+
+    <script src="../JS/Page-Transform/page-Transform.js"></script>
 </body>
 </html>

@@ -5,11 +5,18 @@
   border: none;
 }
 
-header {
+h1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 12vh;
+  background-color: white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 2vh;
+  padding-top: 0.8vh;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .header-left-section {
