@@ -1,0 +1,163 @@
+.fuzzy-analysis-card {
+    width: 100%;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 30px;
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+.fuzzy-analysis-header {
+    margin-bottom: 20px;
+}
+
+.fuzzy-analysis-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.fuzzy-analysis-header p {
+    margin-top: 6px;
+    color: #777;
+}
+
+
+/* Current Temperature */
+
+.temperature-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 20px;
+    margin-bottom: 20px;
+
+    background: #f5f8ff;
+    border-radius: 12px;
+}
+
+.temperature-info strong {
+    font-size: 20px;
+}
+
+
+/* Graph */
+
+.fuzzy-graph-container {
+    width: 100%;
+    height: 400px;
+}
+
+#temperature-graph {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Axes */
+
+.graph-axis {
+    stroke: #333;
+    stroke-width: 2;
+}
+
+.graph-grid {
+    stroke: #ddd;
+    stroke-width: 1;
+    stroke-dasharray: 5 5;
+}
+
+
+/* Axis text */
+
+#temperature-graph text {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    fill: #555;
+}
+
+#temperature-graph .axis-title {
+    font-weight: bold;
+    fill: #333;
+}
+
+
+/* Membership lines */
+
+.membership-low {
+    fill: none;
+    stroke: #4f8cff;
+    stroke-width: 4;
+}
+
+.membership-normal {
+    fill: none;
+    stroke: #19b47a;
+    stroke-width: 4;
+}
+
+.membership-high {
+    fill: none;
+    stroke: #ef6464;
+    stroke-width: 4;
+}
+
+
+/* Current input */
+
+.temperature-marker {
+    stroke: #222;
+    stroke-width: 2;
+    stroke-dasharray: 6 5;
+}
+
+.temperature-point {
+    fill: #222;
+}
+
+
+
+/* Membership results */
+
+.membership-results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.membership-box {
+    padding: 18px;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.membership-box strong {
+    font-size: 18px;
+}
+
+
+/* Responsive */
+
+@media (max-width: 700px) {
+
+    .fuzzy-analysis-card {
+        padding: 20px;
+    }
+
+    .membership-results {
+        grid-template-columns: 1fr;
+    }
+
+    .fuzzy-legend {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+}

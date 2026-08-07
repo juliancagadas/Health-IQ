@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health IQ Detailed Analysis Page</title>
+
+    <link rel="stylesheet" href="../CSS/Detailed-Analysis-Page/body-graph.css">
+    <link rel="stylesheet" href="../CSS/Detailed-Analysis-Page/heart-graph.css">
+    <link rel="stylesheet" href="../CSS/Detailed-Analysis-Page/head-ache.css">
+    <link rel="stylesheet" href="../CSS/Detailed-Analysis-Page/body.css">
+    <link rel="stylesheet" href="../CSS/Landing-Page/header.css">
+
+</head>
+<body>
+    <main>
+
+      <!--Header Navigation Bar-->
+      <h1>
+            <div class="header-left-section">
+            
+            <div class="heart-rate-icon-container">
+                <img class="heart-rate-icon" src="../Assets/heart-rate-icon.png" alt="Health IQ Logo">
+            </div>
+                <div class="two-paragraph">
+                    <p class="health-paragraph">Health<span class="iq">IQ</span></p>
+                    <p class="fuzzy-paragraph">Fuzzy Logic Health Assistant</p>
+                </div>
+            </div>
+        
+            <div class="header-right-section">
+                <button class="nav active" onclick="goToLanding()">Home</button>
+                <button class="nav">About</button>
+                <button class="nav">How It Works</button>
+                <button class="nav">Disclaimer</button>
+
+                <span class="nav-indicator"></span>
+            </div>
+        </h1>
+
+      <!--Body Temperature Section-->
+<section class="fuzzy-analysis-card">
+
+    <div class="fuzzy-analysis-header">
+        <h2>Body Temperature Analysis</h2>
+        <p>Fuzzy membership visualization</p>
+    </div>
+
+    <div class="temperature-info">
+        <span>Current Temperature:</span>
+        <strong id="graph-temperature">37.0 °C</strong>
+    </div>
+
+    <div class="fuzzy-graph-container">
+
+        <svg id="temperature-graph"
+            viewBox="0 0 800 400"
+            preserveAspectRatio="none">
+
+            <!-- Grid -->
+            <line x1="80" y1="40" x2="80" y2="330" class="graph-axis"/>
+            <line x1="80" y1="330" x2="750" y2="330" class="graph-axis"/>
+
+            <!-- Horizontal grid -->
+            <line x1="80" y1="185" x2="750" y2="185" class="graph-grid"/>
+            <line x1="80" y1="40" x2="750" y2="40" class="graph-grid"/>
+
+            <!-- Y Labels -->
+            <text x="45" y="335">0%</text>
+            <text x="40" y="190">50%</text>
+            <text x="40" y="45">100%</text>
+
+            <!-- X Labels -->
+            <text x="75" y="355">35</text>
+            <text x="208" y="355">36</text>
+            <text x="341" y="355">37</text>
+            <text x="475" y="355">38</text>
+            <text x="608" y="355">39</text>
+            <text x="742" y="355">40</text>
+
+            <!-- Axis title -->
+            <text x="385" y="385" class="axis-title">
+                Temperature (°C)
+            </text>
+
+            <text x="5" y="20" class="axis-title">
+                Membership
+            </text>
+
+
+            <!-- LOW -->
+            <polyline
+                points="80,40 80,40 341,330"
+                class="membership-low"
+            />
+
+            <!-- NORMAL -->
+            <polyline
+                points="208,330 341,40 475,330"
+                class="membership-normal"
+            />
+
+            <!-- HIGH -->
+            <polyline
+                points="341,330 542,40 742,330"
+                class="membership-high"
+            />
+
+
+            <!-- Current temperature line -->
+            <line
+                id="temperature-marker"
+                x1="341"
+                y1="40"
+                x2="341"
+                y2="330"
+                class="temperature-marker"
+            />
+
+            <!-- Current point -->
+            <circle
+                id="temperature-point"
+                cx="341"
+                cy="40"
+                r="7"
+                class="temperature-point"
+            />
+
+        </svg>
+
+    </div>
+
+
+    <!-- Membership Values -->
+
+    <div class="membership-results">
+
+        <div class="membership-box">
+            <span>Low</span>
+            <strong id="graph-low">0%</strong>
+        </div>
+
+        <div class="membership-box">
+            <span>Normal</span>
+            <strong id="graph-normal">100%</strong>
+        </div>
+
+        <div class="membership-box">
+            <span>High</span>
+            <strong id="graph-high">0%</strong>
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- BPM GRAPH SECTION -->
+<section class="fuzzy-analysis-card">
+
+    <div class="fuzzy-analysis-header">
+        <h2>Heart Rate Analysis</h2>
+        <p>Fuzzy membership visualization</p>
+    </div>
+
+    <div class="temperature-info">
+        <span>Current Heart Rate:</span>
+        <strong id="graph-heart-rate">75 BPM</strong>
+    </div>
+
+    <div class="fuzzy-graph-container">
+
+        <svg id="heart-rate-graph"
+            viewBox="0 0 800 400"
+            preserveAspectRatio="none">
+
+            <!-- Axes -->
+            <line x1="80" y1="40"
+                  x2="80" y2="330"
+                  class="graph-axis"/>
+
+            <line x1="80" y1="330"
+                  x2="750" y2="330"
+                  class="graph-axis"/>
+
+            <!-- Grid -->
+            <line x1="80" y1="185"
+                  x2="750" y2="185"
+                  class="graph-grid"/>
+
+            <line x1="80" y1="40"
+                  x2="750" y2="40"
+                  class="graph-grid"/>
+
+            <!-- Y Labels -->
+            <text x="45" y="335">0%</text>
+            <text x="40" y="190">50%</text>
+            <text x="40" y="45">100%</text>
+
+            <!-- X Labels -->
+            <text x="70" y="355">30</text>
+            <text x="200" y="355">50</text>
+            <text x="330" y="355">70</text>
+            <text x="460" y="355">90</text>
+            <text x="590" y="355">110</text>
+            <text x="730" y="355">150</text>
+
+            <text x="350" y="385"
+                  class="axis-title">
+                Heart Rate (BPM)
+            </text>
+
+            <text x="5" y="20"
+                  class="axis-title">
+                Membership
+            </text>
+
+
+            <!-- LOW -->
+            <polyline
+                points="80,40 80,40 300,330"
+                class="membership-low"
+            />
+
+
+            <!-- NORMAL -->
+            <polyline
+                points="210,330 340,40 500,330"
+                class="membership-normal"
+            />
+
+
+            <!-- HIGH -->
+            <polyline
+                points="430,330 560,40 750,330"
+                class="membership-high"
+            />
+
+
+            <!-- Current marker -->
+            <line
+                id="heart-rate-marker"
+                x1="360"
+                y1="40"
+                x2="360"
+                y2="330"
+                class="temperature-marker"
+            />
+
+            <circle
+                id="heart-rate-point"
+                cx="360"
+                cy="40"
+                r="7"
+                class="temperature-point"
+            />
+
+        </svg>
+
+    </div>
+
+
+    <!-- Results -->
+
+    <div class="membership-results">
+
+        <div class="membership-box">
+            <span>Low</span>
+            <strong id="graph-heart-low">0%</strong>
+        </div>
+
+        <div class="membership-box">
+            <span>Normal</span>
+            <strong id="graph-heart-normal">100%</strong>
+        </div>
+
+        <div class="membership-box">
+            <span>High</span>
+            <strong id="graph-heart-high">0%</strong>
+        </div>
+
+    </div>
+
+</section>
+
+      <!--HEAD ACHE GRAPH SECTION-->>
+<div class="headache-graph-card">
+
+    <h2>Headache Severity Analysis</h2>
+
+    <p class="headache-subtitle">
+        Fuzzy membership visualization
+    </p>
+
+
+    <!-- CURRENT VALUE -->
+
+    <div class="headache-current-value-box">
+
+        <span>Current Headache Severity:</span>
+
+        <strong id="graph-headache-value">
+            2.0 / 10
+        </strong>
+
+    </div>
+
+
+    <p class="headache-membership-title">
+        Membership
+    </p>
+
+
+    <!-- GRAPH -->
+
+    <div class="headache-graph-wrapper">
+
+        <svg
+            id="headache-graph"
+            viewBox="0 0 800 400">
+
+            <!-- Y AXIS -->
+
+            <line
+                x1="70"
+                y1="40"
+                x2="70"
+                y2="330"
+                class="headache-axis"
+            />
+
+
+            <!-- X AXIS -->
+
+            <line
+                x1="70"
+                y1="330"
+                x2="750"
+                y2="330"
+                class="headache-axis"
+            />
+
+
+            <!-- 100% GRID -->
+
+            <line
+                x1="70"
+                y1="40"
+                x2="750"
+                y2="40"
+                class="headache-grid-line"
+            />
+
+
+            <!-- 50% GRID -->
+
+            <line
+                x1="70"
+                y1="185"
+                x2="750"
+                y2="185"
+                class="headache-grid-line"
+            />
+
+
+            <!-- 0% GRID -->
+
+            <line
+                x1="70"
+                y1="330"
+                x2="750"
+                y2="330"
+                class="headache-grid-line"
+            />
+
+
+            <!-- MILD -->
+
+            <polyline
+                points="70,40 410,330"
+                class="mild-graph"
+            />
+
+
+            <!-- MODERATE -->
+
+            <polyline
+                points="274,330 410,40 614,330"
+                class="moderate-graph"
+            />
+
+
+            <!-- SEVERE -->
+
+            <polyline
+                points="478,330 750,40"
+                class="severe-graph"
+            />
+
+
+            <!-- CURRENT VALUE LINE -->
+
+            <line
+                id="headache-marker"
+                x1="206"
+                y1="40"
+                x2="206"
+                y2="330"
+                class="headache-marker"
+            />
+
+
+            <!-- CURRENT VALUE DOT -->
+
+            <circle
+                id="headache-point"
+                cx="206"
+                cy="40"
+                r="8"
+                class="headache-point"
+            />
+
+
+            <!-- Y AXIS LABELS -->
+
+            <text
+                x="25"
+                y="45"
+                class="headache-axis-label"
+            >
+                100%
+            </text>
+
+            <text
+                x="25"
+                y="190"
+                class="headache-axis-label"
+            >
+                50%
+            </text>
+
+            <text
+                x="35"
+                y="335"
+                class="headache-axis-label"
+            >
+                0%
+            </text>
+
+
+            <!-- X AXIS LABELS -->
+
+            <text x="65" y="355"
+                class="headache-axis-label">
+                0
+            </text>
+
+            <text x="200" y="355"
+                class="headache-axis-label">
+                2
+            </text>
+
+            <text x="336" y="355"
+                class="headache-axis-label">
+                4
+            </text>
+
+            <text x="472" y="355"
+                class="headache-axis-label">
+                6
+            </text>
+
+            <text x="608" y="355"
+                class="headache-axis-label">
+                8
+            </text>
+
+            <text x="742" y="355"
+                class="headache-axis-label">
+                10
+            </text>
+
+
+            <!-- X AXIS TITLE -->
+
+            <text
+                x="340"
+                y="385"
+                class="headache-axis-title"
+            >
+                Headache Severity
+            </text>
+
+        </svg>
+
+    </div>
+
+
+    <!-- MEMBERSHIP RESULTS -->
+
+    <div class="headache-membership-results">
+
+        <div class="headache-membership-box">
+
+            <span>Mild</span>
+
+            <strong id="graph-headache-mild">
+                0%
+            </strong>
+
+        </div>
+
+
+        <div class="headache-membership-box">
+
+            <span>Moderate</span>
+
+            <strong id="graph-headache-moderate">
+                0%
+            </strong>
+
+        </div>
+
+
+        <div class="headache-membership-box">
+
+            <span>Severe</span>
+
+            <strong id="graph-headache-severe">
+                0%
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+    </main>
+
+    <script src="../JS/Home-Page/heart-rate.js"></script>
+    <script src="../JS/Home-Page/body-temperature.js"></script>
+    <script src="../JS/Detailed-Analysis-Page/heart-rate-graph.js"></script>
+    <script src="../JS/Detailed-Analysis-Page/head-ache-graph.js"></script>
+    <script src="../JS/Landing-Page/header-slider.js"></script>
+    <script src="../JS/Page-Transform/page-Transform.js"></script>
+</body>
+</html>

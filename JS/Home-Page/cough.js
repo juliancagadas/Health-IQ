@@ -1,74 +1,188 @@
-const coughSlider = document.querySelector(".cough-slider");
-const coughValueBox = document.querySelector(".cough-value");
-const coughValueStatus = document.querySelector(".cough-status");
+const coughSlider =
+    document.querySelector(".cough-slider");
+
+const coughValueBox =
+    document.querySelector(".cough-value");
+
+const coughValueStatus =
+    document.querySelector(".cough-status");
 
 
-coughSlider.addEventListener("input", () => {
-    const coughLevel = Number(coughSlider.value);
-    coughValueBox.textContent = coughSlider.value + " / 10";
+// =====================================================
+// FUZZIFICATION FUNCTION
+// =====================================================
 
-    //Mild Side
+function getCoughFuzzy(coughLevel) {
+
+    let coughMild = 0;
+    let coughModerrate = 0;
+    let coughSevere = 0;
+
+
+    // =================================================
+    // MILD
+    // =================================================
+
     if (coughLevel <= 0) {
-      mild = 1;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        coughMild = 1;
+
     }
 
     else if (coughLevel >= 4) {
-      mild = 0;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        coughMild = 0;
+
     }
 
     else {
-      mild = (4 - coughLevel) / 4;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        coughMild =
+            (4 - coughLevel) / 4;
+
     }
 
 
-    //Moderate Side
+    // =================================================
+    // MODERATE
+    // =================================================
+
     if (coughLevel <= 0) {
-      moderrate = 0;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        coughModerrate = 0;
+
     }
 
     else if (coughLevel <= 4) {
-      moderrate = coughLevel / 4;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        coughModerrate =
+            coughLevel / 4;
+
     }
 
     else if (coughLevel <= 8) {
-      moderrate = (8 - coughLevel) / 4;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        coughModerrate =
+            (8 - coughLevel) / 4;
+
     }
 
     else {
-      moderrate = 0;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        coughModerrate = 0;
+
     }
 
 
-    //Severe Side
+    // =================================================
+    // SEVERE
+    // =================================================
+
     if (coughLevel <= 4) {
-      severe = 0;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        coughSevere = 0;
+
     }
 
     else if (coughLevel <= 8) {
-      severe = (coughLevel - 4) / 4;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        coughSevere =
+            (coughLevel - 4) / 4;
+
     }
 
     else {
-      severe = 1;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        coughSevere = 1;
+
     }
-})
+
+
+    // =================================================
+    // RETURN FUZZY VALUES
+    // =================================================
+
+    return {
+
+        mild: coughMild,
+        moderate: coughModerrate,
+        severe: coughSevere
+
+    };
+
+}
+
+
+// =====================================================
+// SLIDER
+// =====================================================
+
+coughSlider.addEventListener("input", () => {
+
+    const coughLevel =
+        Number(coughSlider.value);
+
+
+    coughValueBox.textContent =
+        coughLevel.toFixed(1) + " / 10";
+
+
+    const fuzzy =
+        getCoughFuzzy(coughLevel);
+
+
+    // =================================================
+    // GRAPH VALUES
+    // =================================================
+
+    const graphMild =
+        document.querySelector("#graph-cough-mild");
+
+    const graphModerate =
+        document.querySelector("#graph-cough-moderrate");
+
+    const graphSevere =
+        document.querySelector("#graph-cough-severe");
+
+
+    if (graphMild) {
+
+        graphMild.textContent =
+            (fuzzy.mild * 100).toFixed(0) + "%";
+
+    }
+
+
+    if (graphModerate) {
+
+        graphModerate.textContent =
+            (fuzzy.moderate * 100).toFixed(0) + "%";
+
+    }
+
+
+    if (graphSevere) {
+
+        graphSevere.textContent =
+            (fuzzy.severe * 100).toFixed(0) + "%";
+
+    }
+
+});
+
+
+// =====================================================
+// MAKE FUNCTION AVAILABLE TO analyze-health.js
+// =====================================================
+
+window.getCoughFuzzy =
+    getCoughFuzzy;
+
+
+// =====================================================
+// INITIAL CALCULATION
+// =====================================================
+
+coughSlider.dispatchEvent(
+    new Event("input")
+);

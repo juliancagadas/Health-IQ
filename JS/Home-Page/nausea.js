@@ -1,73 +1,185 @@
-const nauseaSlider = document.querySelector(".nausea-slider");
-const nauseaValueBox = document.querySelector(".nausea-value");
+const nauseaSlider =
+    document.querySelector(".nausea-slider");
+
+const nauseaValueBox =
+    document.querySelector(".nausea-value");
 
 
-nauseaSlider.addEventListener("input", () => {
-    const nauseaLevel = Number(nauseaSlider.value);
-    nauseaValueBox.textContent = nauseaSlider.value + " / 10";
+// =====================================================
+// FUZZIFICATION FUNCTION
+// =====================================================
 
-    //Mild Side
+function getNauseaFuzzy(nauseaLevel) {
+
+    let nauseaMild = 0;
+    let nauseaModerrate = 0;
+    let nauseaSevere = 0;
+
+
+    // =================================================
+    // MILD
+    // =================================================
+
     if (nauseaLevel <= 0) {
-      mild = 1;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        nauseaMild = 1;
+
     }
 
     else if (nauseaLevel >= 4) {
-      mild = 0;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        nauseaMild = 0;
+
     }
 
     else {
-      mild = (4 - nauseaLevel) / 4;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        nauseaMild =
+            (4 - nauseaLevel) / 4;
+
     }
 
 
-    //Moderate Side
+    // =================================================
+    // MODERATE
+    // =================================================
+
     if (nauseaLevel <= 0) {
-      moderrate = 0;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        nauseaModerrate = 0;
+
     }
 
     else if (nauseaLevel <= 4) {
-      moderrate = nauseaLevel / 4;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        nauseaModerrate =
+            nauseaLevel / 4;
+
     }
 
     else if (nauseaLevel <= 8) {
-      moderrate = (8 - nauseaLevel) / 4;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        nauseaModerrate =
+            (8 - nauseaLevel) / 4;
+
     }
 
     else {
-      moderrate = 0;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        nauseaModerrate = 0;
+
     }
 
 
-    //Severe Side
+    // =================================================
+    // SEVERE
+    // =================================================
+
     if (nauseaLevel <= 4) {
-      severe = 0;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        nauseaSevere = 0;
+
     }
 
     else if (nauseaLevel <= 8) {
-      severe = (nauseaLevel - 4) / 4;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        nauseaSevere =
+            (nauseaLevel - 4) / 4;
+
     }
 
     else {
-      severe = 1;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        nauseaSevere = 1;
+
     }
-})
+
+
+    // =================================================
+    // RETURN FUZZY VALUES
+    // =================================================
+
+    return {
+
+        mild: nauseaMild,
+        moderate: nauseaModerrate,
+        severe: nauseaSevere
+
+    };
+
+}
+
+
+// =====================================================
+// SLIDER
+// =====================================================
+
+nauseaSlider.addEventListener("input", () => {
+
+    const nauseaLevel =
+        Number(nauseaSlider.value);
+
+
+    nauseaValueBox.textContent =
+        nauseaLevel.toFixed(1) + " / 10";
+
+
+    const fuzzy =
+        getNauseaFuzzy(nauseaLevel);
+
+
+    // =================================================
+    // GRAPH VALUES
+    // =================================================
+
+    const graphMild =
+        document.querySelector("#graph-nausea-mild");
+
+    const graphModerate =
+        document.querySelector("#graph-nausea-moderrate");
+
+    const graphSevere =
+        document.querySelector("#graph-nausea-severe");
+
+
+    if (graphMild) {
+
+        graphMild.textContent =
+            (fuzzy.mild * 100).toFixed(0) + "%";
+
+    }
+
+
+    if (graphModerate) {
+
+        graphModerate.textContent =
+            (fuzzy.moderate * 100).toFixed(0) + "%";
+
+    }
+
+
+    if (graphSevere) {
+
+        graphSevere.textContent =
+            (fuzzy.severe * 100).toFixed(0) + "%";
+
+    }
+
+});
+
+
+// =====================================================
+// MAKE FUNCTION AVAILABLE TO analyze-health.js
+// =====================================================
+
+window.getNauseaFuzzy =
+    getNauseaFuzzy;
+
+
+// =====================================================
+// INITIAL CALCULATION
+// =====================================================
+
+nauseaSlider.dispatchEvent(
+    new Event("input")
+);

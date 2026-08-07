@@ -1,0 +1,96 @@
+.headache-graph-card {
+    width: 100%;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 25px;
+
+    background: white;
+    border-radius: 18px;
+    border: 1px solid #e5e5e5;
+
+    box-sizing: border-box;
+}
+
+.headache-graph-wrapper {
+    width: 100%;
+    height: 400px;
+}
+
+#headache-graph {
+    width: 100%;
+    height: 100%;
+}
+
+.headache-axis {
+    stroke: #333;
+    stroke-width: 2;
+}
+
+.headache-grid-line {
+    stroke: #ddd;
+    stroke-width: 1;
+    stroke-dasharray: 5 5;
+}
+
+
+/* MILD */
+
+.mild-graph {
+    fill: none;
+    stroke: #4f8cff;
+    stroke-width: 4;
+}
+
+
+/* MODERATE */
+
+.moderate-graph {
+    fill: none;
+    stroke: #19b47a;
+    stroke-width: 4;
+}
+
+
+/* SEVERE */
+
+.severe-graph {
+    fill: none;
+    stroke: #ef6464;
+    stroke-width: 4;
+}
+
+
+/* CURRENT VALUE MARKER */
+
+.headache-marker {
+    stroke: #222;
+    stroke-width: 2;
+    stroke-dasharray: 6 5;
+}
+
+
+/* CURRENT VALUE */
+
+.headache-current-value {
+    margin-top: 15px;
+}
+
+
+/* MEMBERSHIP VALUES */
+
+.headache-membership-results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.headache-membership-box {
+    padding: 15px;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+
+    display: flex;
+    justify-content: space-between;
+}

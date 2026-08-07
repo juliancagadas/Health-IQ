@@ -1,73 +1,185 @@
-const fatigueSlider = document.querySelector(".fatigue-slider");
-const fatigueValueBox = document.querySelector(".fatigue-value");
+const fatigueSlider =
+    document.querySelector(".fatigue-slider");
+
+const fatigueValueBox =
+    document.querySelector(".fatigue-value");
 
 
-fatigueSlider.addEventListener("input", () => {
-    const fatigueLevel = Number(fatigueSlider.value);
-    fatigueValueBox.textContent = fatigueSlider.value + " / 10";
+// =====================================================
+// FUZZIFICATION FUNCTION
+// =====================================================
 
-    //Mild Side
+function getFatigueFuzzy(fatigueLevel) {
+
+    let fatigueMild = 0;
+    let fatigueModerrate = 0;
+    let fatigueSevere = 0;
+
+
+    // =================================================
+    // MILD
+    // =================================================
+
     if (fatigueLevel <= 0) {
-      mild = 1;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        fatigueMild = 1;
+
     }
 
     else if (fatigueLevel >= 4) {
-      mild = 0;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        fatigueMild = 0;
+
     }
 
     else {
-      mild = (4 - fatigueLevel) / 4;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        fatigueMild =
+            (4 - fatigueLevel) / 4;
+
     }
 
 
-    //Moderate Side
+    // =================================================
+    // MODERATE
+    // =================================================
+
     if (fatigueLevel <= 0) {
-      moderrate = 0;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        fatigueModerrate = 0;
+
     }
 
     else if (fatigueLevel <= 4) {
-      moderrate = fatigueLevel / 4;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        fatigueModerrate =
+            fatigueLevel / 4;
+
     }
 
     else if (fatigueLevel <= 8) {
-      moderrate = (8 - fatigueLevel) / 4;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        fatigueModerrate =
+            (8 - fatigueLevel) / 4;
+
     }
 
     else {
-      moderrate = 0;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        fatigueModerrate = 0;
+
     }
 
 
-    //Severe Side
+    // =================================================
+    // SEVERE
+    // =================================================
+
     if (fatigueLevel <= 4) {
-      severe = 0;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        fatigueSevere = 0;
+
     }
 
     else if (fatigueLevel <= 8) {
-      severe = (fatigueLevel - 4) / 4;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        fatigueSevere =
+            (fatigueLevel - 4) / 4;
+
     }
 
     else {
-      severe = 1;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        fatigueSevere = 1;
+
     }
-})
+
+
+    // =================================================
+    // RETURN FUZZY VALUES
+    // =================================================
+
+    return {
+
+        mild: fatigueMild,
+        moderate: fatigueModerrate,
+        severe: fatigueSevere
+
+    };
+
+}
+
+
+// =====================================================
+// SLIDER
+// =====================================================
+
+fatigueSlider.addEventListener("input", () => {
+
+    const fatigueLevel =
+        Number(fatigueSlider.value);
+
+
+    fatigueValueBox.textContent =
+        fatigueLevel.toFixed(1) + " / 10";
+
+
+    const fuzzy =
+        getFatigueFuzzy(fatigueLevel);
+
+
+    // =================================================
+    // GRAPH VALUES
+    // =================================================
+
+    const graphMild =
+        document.querySelector("#graph-fatigue-mild");
+
+    const graphModerate =
+        document.querySelector("#graph-fatigue-moderrate");
+
+    const graphSevere =
+        document.querySelector("#graph-fatigue-severe");
+
+
+    if (graphMild) {
+
+        graphMild.textContent =
+            (fuzzy.mild * 100).toFixed(0) + "%";
+
+    }
+
+
+    if (graphModerate) {
+
+        graphModerate.textContent =
+            (fuzzy.moderate * 100).toFixed(0) + "%";
+
+    }
+
+
+    if (graphSevere) {
+
+        graphSevere.textContent =
+            (fuzzy.severe * 100).toFixed(0) + "%";
+
+    }
+
+});
+
+
+// =====================================================
+// MAKE FUNCTION AVAILABLE TO analyze-health.js
+// =====================================================
+
+window.getFatigueFuzzy =
+    getFatigueFuzzy;
+
+
+// =====================================================
+// INITIAL CALCULATION
+// =====================================================
+
+fatigueSlider.dispatchEvent(
+    new Event("input")
+);

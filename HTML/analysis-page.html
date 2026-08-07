@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../CSS/Landing-Page/header.css">
+
+    <link rel="stylesheet" href="../CSS/Analysis-Page/analysis.css">
+    <link rel="stylesheet" href="../CSS/Analysis-Page/body.css">
+
+
+</head>
+<body>
+    <main>
+
+      <h1>
+            <div class="header-left-section">
+            
+            <div class="heart-rate-icon-container">
+                <img class="heart-rate-icon" src="../Assets/heart-rate-icon.png" alt="Health IQ Logo">
+            </div>
+                <div class="two-paragraph">
+                    <p class="health-paragraph">Health<span class="iq">IQ</span></p>
+                    <p class="fuzzy-paragraph">Fuzzy Logic Health Assistant</p>
+                </div>
+            </div>
+        
+            <div class="header-right-section">
+                <button class="nav active" onclick="goToLanding()">Home</button>
+                <button class="nav">About</button>
+                <button class="nav">How It Works</button>
+                <button class="nav">Disclaimer</button>
+
+                <span class="nav-indicator"></span>
+            </div>
+
+        </h1>
+
+
+        <div class="all-section">
+
+          <section-1>
+
+            <p class="health-snapshot">Here's your health snapshot.</p>
+            
+            <div class="health-description-disclaimer">
+              <p class="description">Based on the vitals and symptoms you entered, here's a plain-language overview.</p>
+              <p class="disclaimer">This is not a medical diagnosis. Please see the Disclaimer page in the navigation menu above.</p>
+            </div>
+
+          </section-1>
+
+          <section-2>
+
+            <div class="image-container">
+                <img class="health-status-pic" src="../Assets/health-heart-status.png">
+            </div>
+            <div class="health-status-container">
+                <p class="status-first-paragraph">You're Doing Well!</p>
+                <p>Your vitals are within a typical range and no symptoms were reported. Keep up your regular routine.</p>
+            </div>
+
+          </section-2>
+
+          <section-3>
+
+            <div class="input-box">
+                <div class="input-container">
+                    <div class="input-pic-container">
+                        <img class="input-icon" src="../Assets/input-icon.png">
+                    </div>
+                    <p class="your-inputs-title">Your Inputs</p>
+                </div>
+
+                <div class="all-inputs">
+                    <div class="body-input-container">
+                        <p class="body-input-title">
+                            Body Temperature
+                        </p>
+                    <p class="body-input-value" id="analysis-temperature">
+                        37.0 °C
+                    </p>
+                    </div>
+
+                    <div class="heart-input-container body-input-container">
+                        <p class="heart-input-title body-input-title">
+                            Heart Rate
+                        </p>
+                    <p class="heart-input-value body-input-value" id="analysis-heart-rate">
+                        75 BPM
+                    </p>
+                    </div>
+
+                    <div class="head-input-container body-input-container">
+                        <p class="head-input-title body-input-title">
+                            Head Ache
+                        </p>
+                    <p class="head-input-value body-input-value" id="analysis-headache">
+                        0/10
+                    </p>
+                    </div>
+
+                    <div class="cough-input-container body-input-container">
+                        <p class="cough-input-title body-input-title">
+                            Cough
+                        </p>
+                    <p class="cough-input-value body-input-value" id="analysis-cough">
+                        0/10
+                    </p>
+                    </div>
+
+                    <div class="fatigue-input-container body-input-container">
+                        <p class="fatigue-input-title body-input-title">
+                            Fatigue
+                        </p>
+                    <p class="fatigue-input-value body-input-value" id="analysis-fatigue">
+                        0/10
+                    </p>
+                    </div>
+
+                    <div class="nausea-input-container body-input-container">
+                        <p class="nausea-input-title body-input-title">
+                            Nausea
+                        </p>
+                    <p class="nausea-input-value body-input-value" id="analysis-nausea">
+                        0/10
+                    </p>
+                    </div>
+
+                    <div class="sore-input-container body-input-container">
+                        <p class="sore-input-title body-input-title">
+                            Sore Throat
+                        </p>
+                    <p class="sore-input-value body-input-value" id="analysis-sore-throat">
+                        0/10
+                    </p>
+                    </div>
+
+                    <div class="difficulty-input-container body-input-container">
+                        <p class="difficulty-input-title body-input-title">
+                            Difficulty Breathing
+                        </p>
+                    <p class="difficulty-input-value body-input-value" id="analysis-breathing">
+                        0/10
+                    </p>
+                    </div>
+                </div>
+
+
+            </div>
+                
+
+            <div class="recommend-box">
+                <div class="recommend-container">
+                    <div class="recommend-pic-container">
+                        <img class="recommend-icon" src="../Assets/recommendation-icon.png">
+                    </div>
+                    <p class="recommend-title">Recommendations</p>
+                </div>
+
+                <div class="all-recommendations">
+
+                    <div class="recommendation-one-container">
+                        <div class="check-icon-container">
+                            <img class="check-icon" src="../Assets/check-icon.png">
+                        </div>
+                        <p class="recommendation-one-text">
+                            Rest at Home
+                        </p>
+                    </div>
+
+                    <div class="recommendation-two-container recommendation-one-container">
+                        <div class="check-icon-container">
+                            <img class="check-icon" src="../Assets/check-icon.png">
+                        </div>
+                        <p class="recommendation-two-text recommendation-one-text">
+                            Monitor symptoms
+                        </p>
+                    </div>
+
+                    <div class="recommendation-three-container recommendation-one-container">
+                        <div class="check-icon-container">
+                            <img class="check-icon" src="../Assets/check-icon.png">
+                        </div>
+                        <p class="recommendation-three-text recommendation-one-text">
+                            Stay hydrated
+                        </p>
+                    </div>
+
+                    <div class="recommendation-four-container recommendation-one-container">
+                        <div class="check-icon-container">
+                            <img class="check-icon" src="../Assets/check-icon.png">
+                        </div>
+                        <p class="recommendation-four-text recommendation-one-text">
+                            Seek medical attention if symptoms worsen
+                        </p>
+                    </div>
+
+                </div>
+
+
+            </div>
+            
+        </section-3>
+
+        <section-4>
+
+            <button class="detailed-analysis-button">
+                <p class="analysis-text">View Detailed Analysis</p>
+            </button>
+    
+            <button class="start-new-button">
+                <p class="start-new-text">Start New Assessment</p>
+            </button>
+            
+        </section-4>
+
+        </div>
+
+
+    </main>
+
+    <script src="../JS/Landing-Page/header-slider.js"></script>
+
+    <script src="../JS/Page-Transform/page-Transform.js"></script>
+
+    <script src="../JS/Analysis-Page/analysis.js"></script>
+
+</body>
+</html>

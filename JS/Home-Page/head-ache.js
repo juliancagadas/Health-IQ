@@ -1,74 +1,202 @@
-const headAcheSlider = document.querySelector(".head-slider");
-const headAcheValueBox = document.querySelector(".head-ache-value");
-const headAcheValueStatus = document.querySelector(".head-ache-status");
+const headAcheSlider =
+    document.querySelector(".head-slider");
+
+const headAcheValueBox =
+    document.querySelector(".head-ache-value");
+
+const headAcheValueStatus =
+    document.querySelector(".head-ache-status");
 
 
-headAcheSlider.addEventListener("input", () => {
-    const headAcheLevel = Number(headAcheSlider.value);
-    headAcheValueBox.textContent = headAcheSlider.value + " / 10";
+// =====================================================
+// FUZZIFICATION FUNCTION
+// =====================================================
 
-    //Mild Side
+function getHeadacheFuzzy(headAcheLevel) {
+
+    let headMild = 0;
+    let headModerrate = 0;
+    let headSevere = 0;
+
+
+    // =================================================
+    // MILD
+    // =================================================
+
     if (headAcheLevel <= 0) {
-      mild = 1;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        headMild = 1;
+
     }
 
     else if (headAcheLevel >= 4) {
-      mild = 0;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        headMild = 0;
+
     }
 
     else {
-      mild = (4 - headAcheLevel) / 4;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        headMild =
+            (4 - headAcheLevel) / 4;
+
     }
 
 
-    //Moderate Side
+    // =================================================
+    // MODERATE
+    // =================================================
+
     if (headAcheLevel <= 0) {
-      moderrate = 0;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        headModerrate = 0;
+
     }
 
     else if (headAcheLevel <= 4) {
-      moderrate = headAcheLevel / 4;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        headModerrate =
+            headAcheLevel / 4;
+
     }
 
     else if (headAcheLevel <= 8) {
-      moderrate = (8 - headAcheLevel) / 4;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        headModerrate =
+            (8 - headAcheLevel) / 4;
+
     }
 
     else {
-      moderrate = 0;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        headModerrate = 0;
+
     }
 
 
-    //Severe Side
+    // =================================================
+    // SEVERE
+    // =================================================
+
     if (headAcheLevel <= 4) {
-      severe = 0;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        headSevere = 0;
+
     }
 
     else if (headAcheLevel <= 8) {
-      severe = (headAcheLevel - 4) / 4;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        headSevere =
+            (headAcheLevel - 4) / 4;
+
     }
 
     else {
-      severe = 1;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        headSevere = 1;
+
     }
-})
+
+
+    // =================================================
+    // RETURN FUZZY VALUES
+    // =================================================
+
+    return {
+
+        mild: headMild,
+        moderate: headModerrate,
+        severe: headSevere
+
+    };
+
+}
+
+
+// =====================================================
+// SLIDER
+// =====================================================
+
+headAcheSlider.addEventListener("input", () => {
+
+    const headAcheLevel =
+        Number(headAcheSlider.value);
+
+
+    headAcheValueBox.textContent =
+        headAcheLevel.toFixed(1) + " / 10";
+
+
+    // Get fuzzy values
+    const fuzzy =
+        getHeadacheFuzzy(headAcheLevel);
+
+
+    // =================================================
+    // GRAPH VALUES
+    // =================================================
+
+    document.querySelector(
+        "#graph-headache-mild"
+    ).textContent =
+        (fuzzy.mild * 100).toFixed(0) + "%";
+
+
+    document.querySelector(
+        "#graph-headache-moderrate"
+    ).textContent =
+        (fuzzy.moderate * 100).toFixed(0) + "%";
+
+
+    document.querySelector(
+        "#graph-headache-severe"
+    ).textContent =
+        (fuzzy.severe * 100).toFixed(0) + "%";
+
+
+    // =================================================
+    // MOVE HEADACHE MARKER
+    // =================================================
+
+    const marker =
+        document.querySelector(
+            "#headache-marker"
+        );
+
+
+    const minHeadache = 0;
+    const maxHeadache = 10;
+
+
+    const graphLeft = 70;
+    const graphRight = 750;
+
+
+    const x =
+        graphLeft +
+        ((headAcheLevel - minHeadache) /
+        (maxHeadache - minHeadache))
+        * (graphRight - graphLeft);
+
+
+    marker.setAttribute("x1", x);
+    marker.setAttribute("x2", x);
+
+});
+
+
+// =====================================================
+// MAKE FUNCTION AVAILABLE
+// =====================================================
+
+window.getHeadacheFuzzy =
+    getHeadacheFuzzy;
+
+
+// =====================================================
+// INITIAL CALCULATION
+// =====================================================
+
+headAcheSlider.dispatchEvent(
+    new Event("input")
+);

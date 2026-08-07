@@ -1,73 +1,185 @@
-const soreThroatSlider = document.querySelector(".sore-throat-slider");
-const soreThroatValueBox = document.querySelector(".sore-throat-value");
+const soreThroatSlider =
+    document.querySelector(".sore-throat-slider");
+
+const soreThroatValueBox =
+    document.querySelector(".sore-throat-value");
 
 
-soreThroatSlider.addEventListener("input", () => {
-    const soreThroatLevel = Number(soreThroatSlider.value);
-    soreThroatValueBox.textContent = soreThroatSlider.value + " / 10";
+// =====================================================
+// FUZZIFICATION FUNCTION
+// =====================================================
 
-    //Mild Side
+function getSoreThroatFuzzy(soreThroatLevel) {
+
+    let soreMild = 0;
+    let soreModerrate = 0;
+    let soreSevere = 0;
+
+
+    // =================================================
+    // MILD
+    // =================================================
+
     if (soreThroatLevel <= 0) {
-      mild = 1;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        soreMild = 1;
+
     }
 
     else if (soreThroatLevel >= 4) {
-      mild = 0;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        soreMild = 0;
+
     }
 
     else {
-      mild = (4 - soreThroatLevel) / 4;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        soreMild =
+            (4 - soreThroatLevel) / 4;
+
     }
 
 
-    //Moderate Side
+    // =================================================
+    // MODERATE
+    // =================================================
+
     if (soreThroatLevel <= 0) {
-      moderrate = 0;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        soreModerrate = 0;
+
     }
 
     else if (soreThroatLevel <= 4) {
-      moderrate = soreThroatLevel / 4;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        soreModerrate =
+            soreThroatLevel / 4;
+
     }
 
     else if (soreThroatLevel <= 8) {
-      moderrate = (8 - soreThroatLevel) / 4;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        soreModerrate =
+            (8 - soreThroatLevel) / 4;
+
     }
 
     else {
-      moderrate = 0;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        soreModerrate = 0;
+
     }
 
 
-    //Severe Side
+    // =================================================
+    // SEVERE
+    // =================================================
+
     if (soreThroatLevel <= 4) {
-      severe = 0;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        soreSevere = 0;
+
     }
 
     else if (soreThroatLevel <= 8) {
-      severe = (soreThroatLevel - 4) / 4;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        soreSevere =
+            (soreThroatLevel - 4) / 4;
+
     }
 
     else {
-      severe = 1;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        soreSevere = 1;
+
     }
-})
+
+
+    // =================================================
+    // RETURN FUZZY VALUES
+    // =================================================
+
+    return {
+
+        mild: soreMild,
+        moderate: soreModerrate,
+        severe: soreSevere
+
+    };
+
+}
+
+
+// =====================================================
+// SLIDER
+// =====================================================
+
+soreThroatSlider.addEventListener("input", () => {
+
+    const soreThroatLevel =
+        Number(soreThroatSlider.value);
+
+
+    soreThroatValueBox.textContent =
+        soreThroatLevel.toFixed(1) + " / 10";
+
+
+    const fuzzy =
+        getSoreThroatFuzzy(soreThroatLevel);
+
+
+    // =================================================
+    // GRAPH VALUES
+    // =================================================
+
+    const graphMild =
+        document.querySelector("#graph-sore-mild");
+
+    const graphModerate =
+        document.querySelector("#graph-sore-moderrate");
+
+    const graphSevere =
+        document.querySelector("#graph-sore-severe");
+
+
+    if (graphMild) {
+
+        graphMild.textContent =
+            (fuzzy.mild * 100).toFixed(0) + "%";
+
+    }
+
+
+    if (graphModerate) {
+
+        graphModerate.textContent =
+            (fuzzy.moderate * 100).toFixed(0) + "%";
+
+    }
+
+
+    if (graphSevere) {
+
+        graphSevere.textContent =
+            (fuzzy.severe * 100).toFixed(0) + "%";
+
+    }
+
+});
+
+
+// =====================================================
+// MAKE FUNCTION AVAILABLE TO analyze-health.js
+// =====================================================
+
+window.getSoreThroatFuzzy =
+    getSoreThroatFuzzy;
+
+
+// =====================================================
+// INITIAL CALCULATION
+// =====================================================
+
+soreThroatSlider.dispatchEvent(
+    new Event("input")
+);

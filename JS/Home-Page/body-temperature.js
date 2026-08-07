@@ -3,75 +3,163 @@ const valueBox = document.querySelector(".body-temperature-value");
 const valueStatus = document.querySelector(".body-temperature-status");
 
 
-bodySlider.addEventListener("input", () => {
-    const temp = Number(bodySlider.value);
-    valueBox.textContent = bodySlider.value + " °C";
+// =====================================================
+// FUZZIFICATION FUNCTION
+// =====================================================
 
-    //low Side
+function getBodyTemperatureFuzzy(temp) {
+
+    let bodyLow = 0;
+    let bodyNormal = 0;
+    let bodyHigh = 0;
+
+
+    // =================================================
+    // LOW
+    // =================================================
+
     if (temp <= 35) {
-    low = 1;
-    converted = low * 100;
-    console.log(converted.toFixed(0) + " % Low");
-    }
 
-    else if (temp >= 37) {
-    low = 0;
-    converted = low * 100;
-    console.log(converted.toFixed(0) + " % Low");
-    }
+        bodyLow = 1;
 
-    else {
-    low = (37 - temp) / 2;
-    converted = low * 100;
-    console.log(converted.toFixed(0) + " % Low");
+    } else if (temp >= 37) {
+
+        bodyLow = 0;
+
+    } else {
+
+        bodyLow = (37 - temp) / 2;
+
     }
 
 
-    //Normal Side
+    // =================================================
+    // NORMAL
+    // =================================================
+
     if (temp <= 35) {
-    normal = 0;
-    converted = normal * 100;
-    console.log(converted.toFixed(0) + " % Normal");
-    }
 
-    //Left side
-    else if (temp <= 37) {
-        normal = (temp - 35) / 2;
-        converted = normal * 100;
-        console.log(converted.toFixed(0) + " % Normal");
-    }
+        bodyNormal = 0;
 
-    //Right side
-    else if (temp <= 39) {
-        normal = (39 - temp) / 2;
-        converted = normal * 100;
-        console.log(converted.toFixed(0) + " % Normal");
-    }
+    } else if (temp <= 37) {
 
-    //Above 39
-    else {
-        normal = 0;
-        converted = normal * 100;
-        console.log(converted.toFixed(0) + " % Normal");
+        bodyNormal = (temp - 35) / 2;
+
+    } else if (temp <= 39) {
+
+        bodyNormal = (39 - temp) / 2;
+
+    } else {
+
+        bodyNormal = 0;
+
     }
 
 
-    //High Side
+    // =================================================
+    // HIGH
+    // =================================================
+
     if (temp <= 37) {
-        high = 0;
-        converted = high * 100;
-        console.log(converted.toFixed(0) + " % High");
-    }
-    
-    else if (temp <= 39) {
-        high = (temp - 37) / 2;
-        converted = high * 100;
-        console.log(converted.toFixed(0) + " % High");
+
+        bodyHigh = 0;
+
+    } else if (temp <= 39) {
+
+        bodyHigh = (temp - 37) / 2;
+
+    } else {
+
+        bodyHigh = 1;
+
     }
 
-    else {
-        high = 1;
-        converted = high * 100;
-        console.log(converted.toFixed(0) + " % High");
-    }
+
+    // =================================================
+    // RETURN FUZZY VALUES
+    // =================================================
+
+    return {
+
+        low: bodyLow,
+        normal: bodyNormal,
+        high: bodyHigh
+
+    };
+}
+
+
+// =====================================================
+// SLIDER
+// =====================================================
+
+bodySlider.addEventListener("input", () => {
+
+    const temp =
+        Number(bodySlider.value);
+
+
+    valueBox.textContent =
+        temp.toFixed(1) + " °C";
+
+
+    // Get fuzzy values
+    const fuzzy =
+        getBodyTemperatureFuzzy(temp);
+
+
+    // =================================================
+    // GRAPH
+    // =================================================
+
+    document.querySelector("#graph-low").textContent =
+        (fuzzy.low * 100).toFixed(0) + "%";
+
+    document.querySelector("#graph-normal").textContent =
+        (fuzzy.normal * 100).toFixed(0) + "%";
+
+    document.querySelector("#graph-high").textContent =
+        (fuzzy.high * 100).toFixed(0) + "%";
+
+
+    // =================================================
+    // GRAPH MARKER
+    // =================================================
+
+    const marker =
+        document.querySelector("#body-temp-marker");
+
+    const minTemp = 35;
+    const maxTemp = 40;
+
+    const graphLeft = 70;
+    const graphRight = 750;
+
+    const x =
+        graphLeft +
+        ((temp - minTemp) /
+        (maxTemp - minTemp))
+        * (graphRight - graphLeft);
+
+
+    marker.setAttribute("x1", x);
+    marker.setAttribute("x2", x);
+
 });
+
+
+// =====================================================
+// MAKE FUNCTION AVAILABLE TO OTHER JS FILES
+// =====================================================
+
+window.getBodyTemperatureFuzzy =
+    getBodyTemperatureFuzzy;
+
+
+// =====================================================
+// INITIAL DISPLAY
+// =====================================================
+
+bodySlider.dispatchEvent(
+    new Event("input")
+);

@@ -1,73 +1,185 @@
-const difficultySlider = document.querySelector(".difficulty-slider");
-const difficultyValueBox = document.querySelector(".difficulty-breathing-value");
+const difficultySlider =
+    document.querySelector(".difficulty-slider");
+
+const difficultyValueBox =
+    document.querySelector(".difficulty-breathing-value");
 
 
-difficultySlider.addEventListener("input", () => {
-    const difficultyLevel = Number(difficultySlider.value);
-    difficultyValueBox.textContent = difficultySlider.value + " / 10";
+// =====================================================
+// FUZZIFICATION FUNCTION
+// =====================================================
 
-    //Mild Side
+function getDifficultyBreathingFuzzy(difficultyLevel) {
+
+    let diffMild = 0;
+    let diffModerrate = 0;
+    let diffSevere = 0;
+
+
+    // =================================================
+    // MILD
+    // =================================================
+
     if (difficultyLevel <= 0) {
-      mild = 1;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        diffMild = 1;
+
     }
 
     else if (difficultyLevel >= 4) {
-      mild = 0;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        diffMild = 0;
+
     }
 
     else {
-      mild = (4 - difficultyLevel) / 4;
-      converted = mild * 100;
-      console.log(converted.toFixed(0) + " % Mild");
+
+        diffMild =
+            (4 - difficultyLevel) / 4;
+
     }
 
 
-    //Moderate Side
+    // =================================================
+    // MODERATE
+    // =================================================
+
     if (difficultyLevel <= 0) {
-      moderrate = 0;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        diffModerrate = 0;
+
     }
 
     else if (difficultyLevel <= 4) {
-      moderrate = difficultyLevel / 4;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        diffModerrate =
+            difficultyLevel / 4;
+
     }
 
     else if (difficultyLevel <= 8) {
-      moderrate = (8 - difficultyLevel) / 4;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        diffModerrate =
+            (8 - difficultyLevel) / 4;
+
     }
 
     else {
-      moderrate = 0;
-      converted = moderrate * 100;
-      console.log(converted.toFixed(0) + " % Moderate");
+
+        diffModerrate = 0;
+
     }
 
 
-    //Severe Side
+    // =================================================
+    // SEVERE
+    // =================================================
+
     if (difficultyLevel <= 4) {
-      severe = 0;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        diffSevere = 0;
+
     }
 
     else if (difficultyLevel <= 8) {
-      severe = (difficultyLevel - 4) / 4;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        diffSevere =
+            (difficultyLevel - 4) / 4;
+
     }
 
     else {
-      severe = 1;
-      converted = severe * 100;
-      console.log(converted.toFixed(0) + " % Severe");
+
+        diffSevere = 1;
+
     }
-})
+
+
+    // =================================================
+    // RETURN FUZZY VALUES
+    // =================================================
+
+    return {
+
+        mild: diffMild,
+        moderate: diffModerrate,
+        severe: diffSevere
+
+    };
+
+}
+
+
+// =====================================================
+// SLIDER
+// =====================================================
+
+difficultySlider.addEventListener("input", () => {
+
+    const difficultyLevel =
+        Number(difficultySlider.value);
+
+
+    difficultyValueBox.textContent =
+        difficultyLevel.toFixed(1) + " / 10";
+
+
+    const fuzzy =
+        getDifficultyBreathingFuzzy(difficultyLevel);
+
+
+    // =================================================
+    // GRAPH VALUES
+    // =================================================
+
+    const graphMild =
+        document.querySelector("#graph-difficulty-mild");
+
+    const graphModerate =
+        document.querySelector("#graph-difficulty-moderrate");
+
+    const graphSevere =
+        document.querySelector("#graph-difficulty-severe");
+
+
+    if (graphMild) {
+
+        graphMild.textContent =
+            (fuzzy.mild * 100).toFixed(0) + "%";
+
+    }
+
+
+    if (graphModerate) {
+
+        graphModerate.textContent =
+            (fuzzy.moderate * 100).toFixed(0) + "%";
+
+    }
+
+
+    if (graphSevere) {
+
+        graphSevere.textContent =
+            (fuzzy.severe * 100).toFixed(0) + "%";
+
+    }
+
+});
+
+
+// =====================================================
+// MAKE FUNCTION AVAILABLE TO analyze-health.js
+// =====================================================
+
+window.getDifficultyBreathingFuzzy =
+    getDifficultyBreathingFuzzy;
+
+
+// =====================================================
+// INITIAL CALCULATION
+// =====================================================
+
+difficultySlider.dispatchEvent(
+    new Event("input")
+);
