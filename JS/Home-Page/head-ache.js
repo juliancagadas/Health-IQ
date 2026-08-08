@@ -15,7 +15,7 @@ const headAcheValueStatus =
 function getHeadacheFuzzy(headAcheLevel) {
 
     let headMild = 0;
-    let headModerrate = 0;
+    let headModerate = 0;
     let headSevere = 0;
 
 
@@ -49,27 +49,27 @@ function getHeadacheFuzzy(headAcheLevel) {
 
     if (headAcheLevel <= 0) {
 
-        headModerrate = 0;
+        headModerate = 0;
 
     }
 
     else if (headAcheLevel <= 4) {
 
-        headModerrate =
+        headModerate =
             headAcheLevel / 4;
 
     }
 
     else if (headAcheLevel <= 8) {
 
-        headModerrate =
+        headModerate =
             (8 - headAcheLevel) / 4;
 
     }
 
     else {
 
-        headModerrate = 0;
+        headModerate = 0;
 
     }
 
@@ -105,7 +105,7 @@ function getHeadacheFuzzy(headAcheLevel) {
     return {
 
         mild: headMild,
-        moderate: headModerrate,
+        moderate: headModerate,
         severe: headSevere
 
     };
@@ -124,7 +124,7 @@ headAcheSlider.addEventListener("input", () => {
 
 
     headAcheValueBox.textContent =
-        headAcheLevel.toFixed(1) + " / 10";
+        headAcheLevel + " / 10";
 
 
     // Get fuzzy values
@@ -143,7 +143,7 @@ headAcheSlider.addEventListener("input", () => {
 
 
     document.querySelector(
-        "#graph-headache-moderrate"
+        "#graph-headache-moderate"
     ).textContent =
         (fuzzy.moderate * 100).toFixed(0) + "%";
 

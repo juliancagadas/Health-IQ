@@ -12,7 +12,7 @@ const difficultyValueBox =
 function getDifficultyBreathingFuzzy(difficultyLevel) {
 
     let diffMild = 0;
-    let diffModerrate = 0;
+    let diffModerate = 0;
     let diffSevere = 0;
 
 
@@ -46,27 +46,27 @@ function getDifficultyBreathingFuzzy(difficultyLevel) {
 
     if (difficultyLevel <= 0) {
 
-        diffModerrate = 0;
+        diffModerate = 0;
 
     }
 
     else if (difficultyLevel <= 4) {
 
-        diffModerrate =
+        diffModerate =
             difficultyLevel / 4;
 
     }
 
     else if (difficultyLevel <= 8) {
 
-        diffModerrate =
+        diffModerate =
             (8 - difficultyLevel) / 4;
 
     }
 
     else {
 
-        diffModerrate = 0;
+        diffModerate = 0;
 
     }
 
@@ -102,7 +102,7 @@ function getDifficultyBreathingFuzzy(difficultyLevel) {
     return {
 
         mild: diffMild,
-        moderate: diffModerrate,
+        moderate: diffModerate,
         severe: diffSevere
 
     };
@@ -136,7 +136,7 @@ difficultySlider.addEventListener("input", () => {
         document.querySelector("#graph-difficulty-mild");
 
     const graphModerate =
-        document.querySelector("#graph-difficulty-moderrate");
+        document.querySelector("#graph-difficulty-moderate");
 
     const graphSevere =
         document.querySelector("#graph-difficulty-severe");

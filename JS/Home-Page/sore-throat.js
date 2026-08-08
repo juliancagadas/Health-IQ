@@ -12,7 +12,7 @@ const soreThroatValueBox =
 function getSoreThroatFuzzy(soreThroatLevel) {
 
     let soreMild = 0;
-    let soreModerrate = 0;
+    let soreModerate = 0;
     let soreSevere = 0;
 
 
@@ -46,27 +46,27 @@ function getSoreThroatFuzzy(soreThroatLevel) {
 
     if (soreThroatLevel <= 0) {
 
-        soreModerrate = 0;
+        soreModerate = 0;
 
     }
 
     else if (soreThroatLevel <= 4) {
 
-        soreModerrate =
+        soreModerate =
             soreThroatLevel / 4;
 
     }
 
     else if (soreThroatLevel <= 8) {
 
-        soreModerrate =
+        soreModerate =
             (8 - soreThroatLevel) / 4;
 
     }
 
     else {
 
-        soreModerrate = 0;
+        soreModerate = 0;
 
     }
 
@@ -102,7 +102,7 @@ function getSoreThroatFuzzy(soreThroatLevel) {
     return {
 
         mild: soreMild,
-        moderate: soreModerrate,
+        moderate: soreModerate,
         severe: soreSevere
 
     };
@@ -136,7 +136,7 @@ soreThroatSlider.addEventListener("input", () => {
         document.querySelector("#graph-sore-mild");
 
     const graphModerate =
-        document.querySelector("#graph-sore-moderrate");
+        document.querySelector("#graph-sore-moderate");
 
     const graphSevere =
         document.querySelector("#graph-sore-severe");

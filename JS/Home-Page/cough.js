@@ -15,7 +15,7 @@ const coughValueStatus =
 function getCoughFuzzy(coughLevel) {
 
     let coughMild = 0;
-    let coughModerrate = 0;
+    let coughModerate = 0;
     let coughSevere = 0;
 
 
@@ -49,27 +49,27 @@ function getCoughFuzzy(coughLevel) {
 
     if (coughLevel <= 0) {
 
-        coughModerrate = 0;
+        coughModerate = 0;
 
     }
 
     else if (coughLevel <= 4) {
 
-        coughModerrate =
+        coughModerate =
             coughLevel / 4;
 
     }
 
     else if (coughLevel <= 8) {
 
-        coughModerrate =
+        coughModerate =
             (8 - coughLevel) / 4;
 
     }
 
     else {
 
-        coughModerrate = 0;
+        coughModerate = 0;
 
     }
 
@@ -105,7 +105,7 @@ function getCoughFuzzy(coughLevel) {
     return {
 
         mild: coughMild,
-        moderate: coughModerrate,
+        moderate: coughModerate,
         severe: coughSevere
 
     };
@@ -139,7 +139,7 @@ coughSlider.addEventListener("input", () => {
         document.querySelector("#graph-cough-mild");
 
     const graphModerate =
-        document.querySelector("#graph-cough-moderrate");
+        document.querySelector("#graph-cough-moderate");
 
     const graphSevere =
         document.querySelector("#graph-cough-severe");

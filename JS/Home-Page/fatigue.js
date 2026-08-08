@@ -12,7 +12,7 @@ const fatigueValueBox =
 function getFatigueFuzzy(fatigueLevel) {
 
     let fatigueMild = 0;
-    let fatigueModerrate = 0;
+    let fatigueModerate = 0;
     let fatigueSevere = 0;
 
 
@@ -46,27 +46,27 @@ function getFatigueFuzzy(fatigueLevel) {
 
     if (fatigueLevel <= 0) {
 
-        fatigueModerrate = 0;
+        fatigueModerate = 0;
 
     }
 
     else if (fatigueLevel <= 4) {
 
-        fatigueModerrate =
+        fatigueModerate =
             fatigueLevel / 4;
 
     }
 
     else if (fatigueLevel <= 8) {
 
-        fatigueModerrate =
+        fatigueModerate =
             (8 - fatigueLevel) / 4;
 
     }
 
     else {
 
-        fatigueModerrate = 0;
+        fatigueModerate = 0;
 
     }
 
@@ -102,7 +102,7 @@ function getFatigueFuzzy(fatigueLevel) {
     return {
 
         mild: fatigueMild,
-        moderate: fatigueModerrate,
+        moderate: fatigueModerate,
         severe: fatigueSevere
 
     };
@@ -136,7 +136,7 @@ fatigueSlider.addEventListener("input", () => {
         document.querySelector("#graph-fatigue-mild");
 
     const graphModerate =
-        document.querySelector("#graph-fatigue-moderrate");
+        document.querySelector("#graph-fatigue-moderate");
 
     const graphSevere =
         document.querySelector("#graph-fatigue-severe");

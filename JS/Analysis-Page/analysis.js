@@ -60,4 +60,25 @@ if (savedData) {
     document.querySelector("#analysis-breathing").textContent =
         data.difficultyBreathing.toFixed(1) + " /10";
 
+
+        // ==========================================
+        // FINAL HEALTH RISK
+        // ==========================================
+
+        document.querySelector("#final-risk").textContent =
+            data.finalRisk;
+
+        document.querySelector("#final-risk-strength").textContent =
+            (data.finalRiskValue * 100).toFixed(0) + "%";
+
+
+        console.log(
+            "Final Risk:",
+            data.finalRisk
+        );
+
+        console.log(
+            "Risk Strength:",
+            (data.finalRiskValue * 100).toFixed(0) + "%"
+        );
 }

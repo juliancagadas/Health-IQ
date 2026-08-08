@@ -79,7 +79,7 @@ analyzeButton.addEventListener("click", () => {
     const soreThroatFuzzy =
     getSoreThroatFuzzy(soreThroat);
 
-    const difficultyFuzzy =
+    const difficultyBreathingFuzzy =
     getDifficultyBreathingFuzzy(difficultyBreathing);
 
     // =================================================
@@ -215,17 +215,17 @@ console.log("========== DIFFICULTY BREATHING ==========");
 
 console.log(
     "Mild:",
-    (difficultyFuzzy.mild * 100).toFixed(0) + "%"
+    (difficultyBreathingFuzzy.mild * 100).toFixed(0) + "%"
 );
 
 console.log(
     "Moderate:",
-    (difficultyFuzzy.moderate * 100).toFixed(0) + "%"
+    (difficultyBreathingFuzzy.moderate * 100).toFixed(0) + "%"
 );
 
 console.log(
     "Severe:",
-    (difficultyFuzzy.severe * 100).toFixed(0) + "%"
+    (difficultyBreathingFuzzy.severe * 100).toFixed(0) + "%"
 );
 
     // =================================================
@@ -287,13 +287,13 @@ console.log(
     
         // HEADACHE FUZZY
 
-        headacheMild:
+        headMild:
             headacheFuzzy.mild,
 
-        headacheModerate:
+        headModerate:
             headacheFuzzy.moderate,
 
-        headacheSevere:
+        headSevere:
             headacheFuzzy.severe,
 
         
@@ -348,15 +348,93 @@ console.log(
         // DIFFICULTY BREATHING FUZZY
 
         difficultyMild:
-            difficultyFuzzy.mild,
+            difficultyBreathingFuzzy.mild,
 
         difficultyModerate:
-            difficultyFuzzy.moderate,
+            difficultyBreathingFuzzy.moderate,
 
         difficultySevere:
-            difficultyFuzzy.severe
+            difficultyBreathingFuzzy.severe
 
     };
+
+        // =================================================
+        // FUZZY RULE EVALUATION
+        // =================================================
+
+        const riskResult =
+            window.evaluateHealthRules(healthData);
+
+
+        // =================================================
+        // DEBUG FINAL RISK
+        // =================================================
+
+        console.log("========== FINAL RISK ==========");
+
+        console.log(
+            "Low Risk:",
+            (riskResult.low * 100).toFixed(0) + "%"
+        );
+
+        console.log(
+            "Moderate Risk:",
+            (riskResult.moderate * 100).toFixed(0) + "%"
+        );
+
+        console.log(
+            "High Risk:",
+            (riskResult.high * 100).toFixed(0) + "%"
+        );
+
+        // =================================================
+        // FINAL HEALTH STATUS
+        // =================================================
+
+        let finalRisk = "Low Risk";
+        let finalRiskValue = riskResult.low;
+
+        if (riskResult.moderate > finalRiskValue) {
+            finalRisk = "Moderate Risk";
+            finalRiskValue = riskResult.moderate;
+        }
+
+        if (riskResult.high > finalRiskValue) {
+            finalRisk = "High Risk";
+            finalRiskValue = riskResult.high;
+        }
+
+        console.log("========== FINAL HEALTH STATUS ==========");
+
+        console.log("Final Risk:", finalRisk);
+
+        console.log(
+            "Risk Strength:",
+            (finalRiskValue * 100).toFixed(0) + "%"
+        );
+
+        // =================================================
+        // SAVE RISK RESULTS
+        // =================================================
+
+        healthData.riskLow =
+            riskResult.low;
+
+        healthData.riskModerate =
+            riskResult.moderate;
+
+        healthData.riskHigh =
+            riskResult.high;
+
+        // =================================================
+        // SAVE FINAL HEALTH STATUS
+        // =================================================
+
+        healthData.finalRisk =
+            finalRisk;
+
+        healthData.finalRiskValue =
+            finalRiskValue;
 
 
     // =================================================

@@ -12,7 +12,7 @@ const nauseaValueBox =
 function getNauseaFuzzy(nauseaLevel) {
 
     let nauseaMild = 0;
-    let nauseaModerrate = 0;
+    let nauseaModerate = 0;
     let nauseaSevere = 0;
 
 
@@ -46,27 +46,27 @@ function getNauseaFuzzy(nauseaLevel) {
 
     if (nauseaLevel <= 0) {
 
-        nauseaModerrate = 0;
+        nauseaModerate = 0;
 
     }
 
     else if (nauseaLevel <= 4) {
 
-        nauseaModerrate =
+        nauseaModerate =
             nauseaLevel / 4;
 
     }
 
     else if (nauseaLevel <= 8) {
 
-        nauseaModerrate =
+        nauseaModerate =
             (8 - nauseaLevel) / 4;
 
     }
 
     else {
 
-        nauseaModerrate = 0;
+        nauseaModerate = 0;
 
     }
 
@@ -102,7 +102,7 @@ function getNauseaFuzzy(nauseaLevel) {
     return {
 
         mild: nauseaMild,
-        moderate: nauseaModerrate,
+        moderate: nauseaModerate,
         severe: nauseaSevere
 
     };
@@ -136,7 +136,7 @@ nauseaSlider.addEventListener("input", () => {
         document.querySelector("#graph-nausea-mild");
 
     const graphModerate =
-        document.querySelector("#graph-nausea-moderrate");
+        document.querySelector("#graph-nausea-moderate");
 
     const graphSevere =
         document.querySelector("#graph-nausea-severe");
