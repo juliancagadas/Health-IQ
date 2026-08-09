@@ -9,7 +9,7 @@
 section-1 {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   width: 60vw;
   margin-bottom: 1.5vh;
 }
@@ -23,6 +23,7 @@ section-1 {
 .health-description-disclaimer {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4px;
   color: rgb(80, 77, 77);
 
@@ -42,7 +43,7 @@ section-2 {
   box-shadow: 0px 0px 2px 1px rgba(90, 89, 89, 0.25);
   display: flex;
   flex-direction: row;
-  width: 52vw;
+  width: 35vw;
   padding: 4vh 4vw;
   align-items: center;
   gap: 3vw;
@@ -67,16 +68,33 @@ section-2 {
 
 }
 
-.health-status-container {
+.final-risk-result {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   row-gap: 1.5vh;
+  column-gap: 5vw;
+  align-items: center;
 
 }
 
-.status-first-paragraph {
+.final-level-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 3vw;
+}
+
+.final-risk-label {
+  font-size: 1.3rem;
+
+}
+
+.final-risk-level {
   font-weight: bold;
   font-size: 2rem;
+}
+
+.final-risk-score {
+  font-size: 5rem;
 }
 
 section-3 {
