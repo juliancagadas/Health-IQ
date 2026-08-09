@@ -19,14 +19,13 @@ function evaluateHealthRules(data) {
     // = Low Risk
     // ==========================================
 
-    lowRisk = Math.max(
-        lowRisk,
-        Math.min(
+    const rule1 = Math.min(
             data.bodyNormal,
             data.headMild,
             data.coughMild
-        )
-    );
+        );
+
+    lowRisk = Math.max(lowRisk, rule1);
 
 
     // ==========================================
@@ -35,14 +34,13 @@ function evaluateHealthRules(data) {
     // = Moderate Risk
     // ==========================================
 
-    moderateRisk = Math.max(
-        moderateRisk,
-        Math.min(
+    const rule2 = Math.min(
             data.bodyNormal,
             data.headModerate,
             data.coughModerate
-        )
-    );
+        );
+
+    moderateRisk = Math.max(moderateRisk, rule2);
 
 
     // ==========================================
@@ -51,13 +49,12 @@ function evaluateHealthRules(data) {
     // = High Risk
     // ==========================================
 
-    highRisk = Math.max(
-        highRisk,
-        Math.min(
+    const rule3 = Math.min(
             data.bodyHigh,
             data.headModerate
-        )
-    );
+        );
+
+    highRisk = Math.max(highRisk, rule3);
 
 
     // ==========================================
@@ -66,13 +63,12 @@ function evaluateHealthRules(data) {
     // = High Risk
     // ==========================================
 
-    highRisk = Math.max(
-        highRisk,
-        Math.min(
+    const rule4 = Math.min(
             data.bodyHigh,
             data.headSevere
-        )
-    );
+        );
+
+    highRisk = Math.max(highRisk, rule4);
 
 
     // ==========================================
@@ -81,10 +77,9 @@ function evaluateHealthRules(data) {
     // = High Risk
     // ==========================================
 
-    highRisk = Math.max(
-        highRisk,
-        data.difficultySevere
-    );
+    const rule5 = data.difficultySevere;
+    
+    highRisk = Math.max(highRisk, rule5);
 
 
     // ==========================================
@@ -93,14 +88,12 @@ function evaluateHealthRules(data) {
     // = High Risk
     // ==========================================
 
-    highRisk = Math.max(
-        highRisk,
-        Math.min(
+    const rule6 = Math.min(
             data.heartLow,
             data.headSevere
-        )
-    );
+        );
 
+        highRisk = Math.max(highRisk, rule6);
 
     // ==========================================
     // RETURN FINAL RULE STRENGTHS
@@ -109,7 +102,16 @@ function evaluateHealthRules(data) {
     return {
         low: lowRisk,
         moderate: moderateRisk,
-        high: highRisk
+        high: highRisk,
+
+        rules: {
+            rule1: rule1,
+            rule2: rule2,
+            rule3: rule3,
+            rule4: rule4,
+            rule5: rule5,
+            rule6: rule6
+        }
     };
 }
 
