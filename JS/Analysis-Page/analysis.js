@@ -16,7 +16,7 @@ if (savedData) {
     // ==========================================
 
     document.querySelector("#analysis-temperature").textContent =
-        data.bodyTemperature.toFixed(1) + " °C";
+        Number(data.bodyTemperature).toFixed(1) + " °C";
 
 
     console.log(
@@ -43,22 +43,22 @@ if (savedData) {
         data.heartRate + " BPM";
 
     document.querySelector("#analysis-headache").textContent =
-        data.headache.toFixed(1) + " /10";
+        Number(data.headache).toFixed(1) + " /10";
 
     document.querySelector("#analysis-cough").textContent =
-        data.cough.toFixed(1) + " /10";
+        Number(data.cough).toFixed(1) + " /10";
 
     document.querySelector("#analysis-fatigue").textContent =
-        data.fatigue.toFixed(1) + " /10";
+        Number(data.fatigue).toFixed(1) + " /10";
 
     document.querySelector("#analysis-nausea").textContent =
-        data.nausea.toFixed(1) + " /10";
+        Number(data.nausea).toFixed(1) + " /10";
 
     document.querySelector("#analysis-sore-throat").textContent =
-        data.soreThroat.toFixed(1) + " /10";
+        Number(data.soreThroat).toFixed(1) + " /10";
 
     document.querySelector("#analysis-breathing").textContent =
-        data.difficultyBreathing.toFixed(1) + " /10";
+        Number(data.difficultyBreathing).toFixed(1) + " /10";
 
 
         // ==========================================
@@ -90,11 +90,47 @@ if (savedData) {
             finalRiskValue = riskHigh;
         }
 
-        document.querySelector
-        ("#final-risk").textContent = finalRisk;
+        const finalRiskElement = document.querySelector("#final-risk");
 
-        document.querySelector
-        ("final-risk-strength").textContent = (finalRiskValue * 100).toFixed(0) + "%";
+        const finalRiskStrengthElement = document.querySelector("#final-risk-strength");
+
+        // Display text
+        finalRiskElement.textContent = finalRisk;
+
+        finalRiskStrengthElement.textContent = (finalRiskValue * 100).toFixed(0) + "%";
+
+        // ==========================================
+        // CHANGE RISK COLOR
+        // ==========================================
+
+        if (finalRisk === "Low Risk") {
+
+            finalRiskElement.style.color = "#16A34A";
+
+            finalRiskStrengthElement.style.color = "#16A34A";
+
+
+        }
+
+        else if (finalRisk === "Moderate Risk") {
+
+            finalRiskElement.style.color = "#F59E0B";
+
+            finalRiskStrengthElement.style.color = "#F59E0B";
+
+
+        }
+
+        else if (finalRisk === "High Risk") {
+
+            finalRiskElement.style.color = "#ff0000";
+
+            finalRiskStrengthElement.style.color = "#fc0000";
+
+            
+
+        }
+
 
         // ==========================================
         // RULE STRENGTHS
@@ -115,10 +151,10 @@ if (savedData) {
         const rule4 =
             Number(rules.rules4) || 0;
 
-        const rules5 =
+        const rule5 =
             Number(rules.rules5) || 0;
         
-        const rules6 =
+        const rule6 =
             Number(rules.rules6) || 0;
         
 
@@ -148,6 +184,11 @@ if (savedData) {
         // For Debug
         console.log(
             "==========ACTIVE RULES==========="
+        );
+
+        console.log(
+            "Active Rules:",
+            activeRuleCount
         );
 
         console.log(
@@ -204,6 +245,10 @@ if (savedData) {
         recommendations.push(
             "Continue monitoring your symptoms."
         );
+
+        recommendations.push(
+            "Continue monitoring your symptoms."
+        );
     }
 
 
@@ -224,6 +269,11 @@ if (savedData) {
         recommendations.push(
             "Consider consulting a healthcare professional if symptoms persist or worsen."
         );
+
+        recommendations.push(
+            "Stay hydrated and monitor your symptoms closely."
+        );
+
     }
 
     // ------------------------------------------
@@ -238,6 +288,10 @@ if (savedData) {
 
         recommendations.push(
             "Avoid hardcore activities and rest."
+        );
+
+        recommendations.push(
+            "Monitor your symptoms closely."
         );
 
         recommendations.push(
@@ -272,7 +326,7 @@ if (savedData) {
     // RULE 6
     // Low heart rate + severe headache
 
-    if (rules6 > 0) {
+    if (rule6 > 0) {
         recommendations.push(
             "Monitor your heart rate and severe headache symptoms closely."
         );
@@ -282,25 +336,47 @@ if (savedData) {
     // ==========================================
     // DISPLAY RECOMMENDATIONS
     // ==========================================
+    const recommendationContainers = [
+        document.querySelector(".recommendation-one-container"),
+        document.querySelector(".recommendation-two-container"),
+        document.querySelector(".recommendation-three-container"),
+        document.querySelector(".recommendation-four-container"),
+    ]
 
     const recommendationElements = [
         
-        document.querySelector(
-            ".recommendation-one-text"
-        ),
-
-        document.querySelector(
-            ".recommendation-two-text"
-        ),
-
-        document.querySelector(
-            ".recommendation-three-text"
-        ),
-
-        document.querySelector(
-        ".recommendation-four-text"
-        ),
+        document.querySelector(".recommendation-one-text"),
+        document.querySelector(".recommendation-two-text"),
+        document.querySelector(".recommendation-three-text"),
+        document.querySelector(".recommendation-four-text")
     ];
+
+        // ==========================================
+        // RECOMMENDATION BACKGROUND COLOR
+        // ==========================================
+
+        let recommendationBackground = "";
+        
+        if (finalRisk === "Low Risk") {
+            recommendationBackground = "#E8F5E9";
+        }
+
+        else if (finalRisk === "Moderate Risk") {
+            recommendationBackground = "#FFF4E5";
+        }
+
+        else if (finalRisk === "High Risk") {
+            recommendationBackground = "#FDECEC";
+        }
+
+        // Apply background to all recommendation containers
+
+        recommendationContainers.forEach(container => {
+            if (container) {
+                container.style.backgroundColor = recommendationBackground;
+            }
+        });
+
 
 
     recommendationElements.forEach(
@@ -311,6 +387,8 @@ if (savedData) {
             }
         }
     );
+
+
 
     recommendations
     .slice(0, 4)
