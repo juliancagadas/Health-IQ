@@ -96,12 +96,18 @@ if (savedData) {
 
         const imageContainerElement = document.querySelector("#image-container-id");
 
+        const detailedAnalysisElement = document.querySelector("#detailed-analysis-id");
+
+        const sectionTwoElement = document.querySelector("#section-two-id");
+
         // Display text
         finalRiskElement.textContent = finalRisk;
 
         finalRiskStrengthElement.textContent = (finalRiskValue * 100).toFixed(0) + "%";
 
-        imageContainerElement.style.backgroudColor = "";
+        imageContainerElement.style.backgroundColor = "#16A34A";
+
+        detailedAnalysisElement.style.backgroundColor = "#16A34A";
         // ==========================================
         // CHANGE RISK COLOR
         // ==========================================
@@ -112,7 +118,11 @@ if (savedData) {
 
             finalRiskStrengthElement.style.color = "#16A34A";
 
-            imageContainerElement.style.backgroudColor = "#16A34A";
+            imageContainerElement.style.backgroundColor = "#16A34A";
+
+            detailedAnalysisElement.style.backgroundColor = "#16A34A";
+
+            sectionTwoElement.style.backgroundColor = "#E8F5E9";
 
 
         }
@@ -123,7 +133,11 @@ if (savedData) {
 
             finalRiskStrengthElement.style.color = "#F59E0B";
 
-            imageContainerElement.style.backgroudColor = "#F59E0B";
+            imageContainerElement.style.backgroundColor = "#F59E0B";
+
+            detailedAnalysisElement.style.backgroundColor = "#F59E0B";
+
+            sectionTwoElement.style.backgroundColor =  "#FFF4E5";
 
 
         }
@@ -134,7 +148,11 @@ if (savedData) {
 
             finalRiskStrengthElement.style.color = "#fc0000";
 
-            imageContainerElement.style.backgroudColor = "#fc0000";
+            imageContainerElement.style.backgroundColor = "#fc0000";
+
+            detailedAnalysisElement.style.backgroundColor = "#fc0000";
+
+            sectionTwoElement.style.backgroundColor =  "#FDECEC";
 
         }
 

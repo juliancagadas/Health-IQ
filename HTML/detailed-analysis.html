@@ -15,8 +15,8 @@
 <body>
     <main>
 
-      <!--Header Navigation Bar-->
-      <h1>
+        <!--Header Navigation Bar-->
+        <h1>
             <div class="header-left-section">
             
             <div class="heart-rate-icon-container">
@@ -38,8 +38,8 @@
             </div>
         </h1>
 
-      <!--Body Temperature Section-->
-<section class="fuzzy-analysis-card">
+        <!--Body Temperature Section-->
+    <section class="fuzzy-analysis-card">
 
     <div class="fuzzy-analysis-header">
         <h2>Body Temperature Analysis</h2>
@@ -51,12 +51,13 @@
         <strong id="graph-temperature">37.0 °C</strong>
     </div>
 
+    <p class="membership-title">
+        Membership
+    </p>
+
     <div class="fuzzy-graph-container">
 
-        <svg id="temperature-graph"
-            viewBox="0 0 800 400"
-            preserveAspectRatio="none">
-
+        <svg id="temperature-graph" viewBox="0 0 800 400" preserveAspectRatio="none">
             <!-- Grid -->
             <line x1="80" y1="40" x2="80" y2="330" class="graph-axis"/>
             <line x1="80" y1="330" x2="750" y2="330" class="graph-axis"/>
@@ -66,46 +67,32 @@
             <line x1="80" y1="40" x2="750" y2="40" class="graph-grid"/>
 
             <!-- Y Labels -->
-            <text x="45" y="335">0%</text>
-            <text x="40" y="190">50%</text>
-            <text x="40" y="45">100%</text>
+            <text x="45"y="335">0%</text>
+            
+            <text x="40"y="190">50%</text>
+            <text x="40"y="45">100%</text>
 
             <!-- X Labels -->
             <text x="75" y="355">35</text>
             <text x="208" y="355">36</text>
+
             <text x="341" y="355">37</text>
             <text x="475" y="355">38</text>
             <text x="608" y="355">39</text>
             <text x="742" y="355">40</text>
 
             <!-- Axis title -->
-            <text x="385" y="385" class="axis-title">
-                Temperature (°C)
-            </text>
-
-            <text x="5" y="20" class="axis-title">
-                Membership
-            </text>
-
+            <text x="385" y="385" class="axis-title"> Temperature (°C) </text>
+            <text x="5" y="20" class="axis-title"> Membership </text>
 
             <!-- LOW -->
-            <polyline
-                points="80,40 80,40 348,330"
-                class="membership-low"
-            />
+            <polyline points="80,40 80,40 348,330" class="membership-low"/>
 
             <!-- NORMAL -->
-            <polyline
-                points="80,330 348,40 616,330"
-                class="membership-normal"
-            />
+            <polyline points="80,330 348,40 616,330" class="membership-normal"/>
 
             <!-- HIGH -->
-            <polyline
-                points="348,330 616,40 750,330"
-                class="membership-high"
-            />
-
+            <polyline points="348,330 616,40 750,330" class="membership-high"/>
 
             <!-- Current temperature line -->
             <line
@@ -286,22 +273,14 @@
 <div class="headache-graph-card">
 
     <h2>Headache Severity Analysis</h2>
-
-    <p class="headache-subtitle">
-        Fuzzy membership visualization
-    </p>
+    <p class="headache-subtitle">Fuzzy membership visualization</p>
 
 
     <!-- CURRENT VALUE -->
 
     <div class="headache-current-value-box">
-
         <span>Current Headache Severity:</span>
-
-        <strong id="graph-headache-value">
-            2.0 / 10
-        </strong>
-
+        <strong id="graph-headache-value">2.0 / 10</strong>
     </div>
 
 
@@ -327,7 +306,6 @@
                 y2="330"
                 class="headache-axis"
             />
-
 
             <!-- X AXIS -->
 

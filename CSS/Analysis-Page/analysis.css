@@ -298,7 +298,7 @@ section-4 {
 }
 
 .start-new-button:hover {
-  background-color: rgb(12, 214, 144);
+  background-color: rgb(6, 165, 109);
   color: white;
   cursor: pointer;
 }
@@ -306,4 +306,23 @@ section-4 {
 .start-new-text {
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+
+body {
+    opacity: 0;
+    animation: analysisPageFadeIn 0.7s ease forwards;
+}
+
+
+@keyframes analysisPageFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
 }

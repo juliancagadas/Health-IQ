@@ -459,11 +459,44 @@ console.log(
     );
 
 
-    // =================================================
-    // GO TO ANALYSIS
-    // =================================================
+// =================================================
+// SHOW LOADING SCREEN
+// =================================================
 
-    window.location.href =
-        "analysis-page.html";
+const loadingScreen =
+    document.querySelector("#analysis-loading-screen");
+
+const loadingVideo =
+    document.querySelector("#analysis-loading-video");
+
+
+// Show white loading screen
+loadingScreen.classList.add("active");
+
+
+// Start gift animation
+loadingVideo.currentTime = 0;
+
+loadingVideo.play();
+
+
+// =================================================
+// GO TO ANALYSIS PAGE AFTER ANIMATION
+// =================================================
+
+loadingVideo.addEventListener("ended", () => {
+
+    // Start smooth fade
+    loadingScreen.classList.add("fade-out");
+
+    // Wait for fade animation
+    setTimeout(() => {
+
+        window.location.href =
+            "analysis-page.html";
+
+    }, 700);
+
+});
 
 });

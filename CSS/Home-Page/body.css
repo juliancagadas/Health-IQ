@@ -38,3 +38,37 @@ main {
 .arrow-button-icon {
   margin-left: 3.5vw;
 }
+
+/* =====================================================
+    ANALYSIS LOADING SCREEN
+===================================================== */
+
+.analysis-loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+
+/* Show loading screen */
+
+.analysis-loading-screen.active {
+    display: flex;
+}
+
+
+
+/* Loading animation */
+
+.analysis-loading-video {
+    width: 600px;
+    height: 600px;
+    object-fit: contain;
+}
