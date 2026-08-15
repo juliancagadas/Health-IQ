@@ -166,19 +166,19 @@ loadingVideo.play();
 // GO TO ANALYSIS PAGE AFTER ANIMATION
 // =================================================
 
-// loadingVideo.addEventListener("ended", () => {
+        loadingVideo.addEventListener("ended", () => {
 
-//     // Start smooth fade
-//     loadingScreen.classList.add("fade-out");
+            // Start smooth fade
+            loadingScreen.classList.add("fade-out");
 
-//     // Wait for fade animation
-//     setTimeout(() => {
+            // Wait for fade animation
+            setTimeout(() => {
 
-//         window.location.href =
-//             "analysis-page.html";
+                window.location.href =
+                    "analysis-page.html";
 
-//     }, 700);
+            }, 700);
 
-// });
+        });
 
 });
