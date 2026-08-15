@@ -19,22 +19,6 @@ if (savedData) {
         Number(data.bodyTemperature).toFixed(1) + " °C";
 
 
-    console.log(
-        "Low:",
-        (data.bodyLow * 100).toFixed(0) + "%"
-    );
-
-    console.log(
-        "Normal:",
-        (data.bodyNormal * 100).toFixed(0) + "%"
-    );
-
-    console.log(
-        "High:",
-        (data.bodyHigh * 100).toFixed(0) + "%"
-    );
-
-
     // ==========================================
     // OTHER INPUTS
     // ==========================================
@@ -108,6 +92,7 @@ if (savedData) {
         imageContainerElement.style.backgroundColor = "#16A34A";
 
         detailedAnalysisElement.style.backgroundColor = "#16A34A";
+        
         // ==========================================
         // CHANGE RISK COLOR
         // ==========================================
@@ -165,22 +150,22 @@ if (savedData) {
             data.rules || {};
 
         const rule1 =
-            Number(rules.rules1) || 0;
+            Number(rules.rule1) || 0;
 
         const rule2 =
-            Number(rules.rules2) || 0;
+            Number(rules.rule2) || 0;
         
         const rule3 =
-            Number(rules.rules3) || 0;
+            Number(rules.rule3) || 0;
 
         const rule4 =
-            Number(rules.rules4) || 0;
+            Number(rules.rule4) || 0;
 
         const rule5 =
-            Number(rules.rules5) || 0;
+            Number(rules.rule5) || 0;
         
         const rule6 =
-            Number(rules.rules6) || 0;
+            Number(rules.rule6) || 0;
         
 
         // ==========================================
@@ -206,239 +191,418 @@ if (savedData) {
             activeRules.length;
 
 
-        // For Debug
-        console.log(
-            "==========ACTIVE RULES==========="
-        );
+// ==========================================
+// RECOMMENDATIONS
+// ==========================================
 
-        console.log(
-            "Active Rules:",
-            activeRuleCount
-        );
+// ==========================================
+// DEFAULT RECOMMENDATIONS
+// Based on FINAL RISK
+// ==========================================
 
-        console.log(
-        "Rule 1:",
-        (rule1 * 100).toFixed(0) + "%"
-        );
+const defaultRecommendations = [];
 
-        console.log(
-        "Rule 2:",
-        (rule2 * 100).toFixed(0) + "%"
-        );
+// ------------------------------------------
+// LOW RISK
+// ------------------------------------------
 
-        console.log(
-        "Rule 3:",
-        (rule3 * 100).toFixed(0) + "%"
-        );
+if (finalRisk === "Low Risk") {
 
-        console.log(
-        "Rule 4:",
-        (rule4 * 100).toFixed(0) + "%"
-        );
+    defaultRecommendations.push(
+        "Maintain your usual daily routine while getting adequate rest."
+    );
 
-        console.log(
-        "Rule 5:",
-        (rule5 * 100).toFixed(0) + "%"
-        );
+    defaultRecommendations.push(
+        "Stay hydrated and continue observing your symptoms for any changes."
+    );
 
-        console.log(
-        "Rule 6:",
-        (rule6 * 100).toFixed(0) + "%"
-        );
+}
 
 
-    // ==========================================
-    // RECOMMENDATIONS
-    // ==========================================
+// ------------------------------------------
+// MODERATE RISK
+// ------------------------------------------
 
-    const recommendations = [];
+else if (finalRisk === "Moderate Risk") {
 
-    // ------------------------------------------
-    // LOW RISK
-    // ------------------------------------------
+    defaultRecommendations.push(
+        "Reduce strenuous activities and give your body enough time to recover."
+    );
 
-    if (finalRisk === "Low Risk") {
+    defaultRecommendations.push(
+        "Monitor your symptoms closely and consider professional advice if they worsen."
+    );
 
-        recommendations.push(
-            "Rest at home and allow your body to recover."
-        );
+}
 
-        recommendations.push(
-            "Stay hydrated throughout the day."
-        );
 
-        recommendations.push(
-            "Continue monitoring your symptoms."
-        );
+// ------------------------------------------
+// HIGH RISK
+// ------------------------------------------
 
-        recommendations.push(
-            "Continue monitoring your symptoms."
-        );
+else if (finalRisk === "High Risk") {
+
+    defaultRecommendations.push(
+        "Avoid strenuous physical activity and remain at rest while symptoms are significant."
+    );
+
+    defaultRecommendations.push(
+        "Seek prompt medical evaluation, especially if symptoms are severe or worsening."
+    );
+
+}
+
+
+// ==========================================
+// RULE-SPECIFIC RECOMMENDATIONS
+// Based on STRONGEST ACTIVE RULE
+// ==========================================
+
+const ruleRecommendations = [];
+
+
+// Create rule list
+const activeRuleList = [
+
+    {
+        number: 1,
+        strength: rule1
+    },
+
+    {
+        number: 2,
+        strength: rule2
+    },
+
+    {
+        number: 3,
+        strength: rule3
+    },
+
+    {
+        number: 4,
+        strength: rule4
+    },
+
+    {
+        number: 5,
+        strength: rule5
+    },
+
+    {
+        number: 6,
+        strength: rule6
     }
 
-
-    // ------------------------------------------
-    // MODERATE RISK
-    // ------------------------------------------
-
-    if (finalRisk === "Moderate Risk") {
-
-        recommendations.push(
-            "Rest and avoid hardcore activities."
-        );
-
-        recommendations.push(
-            "Stay hydrated and monitor your symptoms closely."
-        );
-
-        recommendations.push(
-            "Consider consulting a healthcare professional if symptoms persist or worsen."
-        );
-
-        recommendations.push(
-            "Stay hydrated and monitor your symptoms closely."
-        );
-
-    }
-
-    // ------------------------------------------
-    // HIGH RISK
-    // ------------------------------------------
-
-    if (finalRisk === "High Risk") {
-
-        recommendations.push(
-            "Seek medical attention, especially if symptoms are worsening."
-        );
-
-        recommendations.push(
-            "Avoid hardcore activities and rest."
-        );
-
-        recommendations.push(
-            "Monitor your symptoms closely."
-        );
-
-        recommendations.push(
-            "Monitor your symptoms closely."
-        );
-    }
-
-    // ==========================================
-    // RULE-SPECIFIC RECOMMENDATIONS
-    // ==========================================
-
-    // RULE 3 / 4
-    // High temperature + moderate/severe headache
-
-    if (rule3 > 0 || rule4 > 0) {
-        recommendations.push(
-            "Monitor your body temperature and headache symptoms closely."
-        );
-    }
+];
 
 
-    // RULE 5
-    // Severe difficulty breathing
-
-    if (rule5 > 0) {
-        recommendations.push(
-            "Difficulty breathing can require urgent medical attention. Seek appropriate medical care promptly."
-        );
-    }
+// Sort from strongest to weakest
+activeRuleList.sort(
+    (a, b) => b.strength - a.strength
+);
 
 
-    // RULE 6
-    // Low heart rate + severe headache
-
-    if (rule6 > 0) {
-        recommendations.push(
-            "Monitor your heart rate and severe headache symptoms closely."
-        );
-    }
-
-
-    // ==========================================
-    // DISPLAY RECOMMENDATIONS
-    // ==========================================
-    const recommendationContainers = [
-        document.querySelector(".recommendation-one-container"),
-        document.querySelector(".recommendation-two-container"),
-        document.querySelector(".recommendation-three-container"),
-        document.querySelector(".recommendation-four-container"),
-    ]
-
-    const recommendationElements = [
-        
-        document.querySelector(".recommendation-one-text"),
-        document.querySelector(".recommendation-two-text"),
-        document.querySelector(".recommendation-three-text"),
-        document.querySelector(".recommendation-four-text")
-    ];
-
-        // ==========================================
-        // RECOMMENDATION BACKGROUND COLOR
-        // ==========================================
-
-        let recommendationBackground = "";
-        
-        if (finalRisk === "Low Risk") {
-            recommendationBackground = "#E8F5E9";
-        }
-
-        else if (finalRisk === "Moderate Risk") {
-            recommendationBackground = "#FFF4E5";
-        }
-
-        else if (finalRisk === "High Risk") {
-            recommendationBackground = "#FDECEC";
-        }
-
-        // Apply background to all recommendation containers
-
-        recommendationContainers.forEach(container => {
-            if (container) {
-                container.style.backgroundColor = recommendationBackground;
-            }
-        });
-
-
-
-    recommendationElements.forEach(
-        element => {
-            if (element) {
-
-                element.textContent = "";
-            }
-        }
+// Get strongest active rule
+const strongestRule =
+    activeRuleList.find(
+        rule => rule.strength > 0
     );
 
 
+// ==========================================
+// RULE 6
+// LOW HEART RATE + SEVERE HEADACHE
+// ==========================================
 
-    recommendations
-    .slice(0, 4)
+if (
+    strongestRule &&
+    strongestRule.number === 6
+) {
+
+    ruleRecommendations.push(
+        "Your low heart rate and severe headache need immediate medical attention."
+    );
+
+    ruleRecommendations.push(
+        "Pay close attention to these symptoms and consider medical evaluation if they persist or worsen."
+    );
+
+}
+
+
+// ==========================================
+// RULE 5
+// SEVERE DIFFICULTY BREATHING
+// ==========================================
+
+else if (
+    strongestRule &&
+    strongestRule.number === 5
+) {
+
+    ruleRecommendations.push(
+        "Significant difficulty breathing is a serious symptom that requires immediate medical attention."
+    );
+
+    ruleRecommendations.push(
+        "Stop strenuous activity and seek urgent medical attention if the breathing difficulty is severe or worsening."
+    );
+
+}
+
+
+// ==========================================
+// RULE 4
+// HIGH TEMPERATURE + SEVERE HEADACHE
+// ==========================================
+
+else if (
+    strongestRule &&
+    strongestRule.number === 4
+) {
+
+    ruleRecommendations.push(
+        "The combination of elevated temperature and severe headache is a concerning sign that requires medical attention."
+    );
+
+    ruleRecommendations.push(
+        "Rest, monitor both symptoms closely, and consider medical evaluation if they persist or worsen."
+    );
+
+}
+
+
+// ==========================================
+// RULE 3
+// HIGH TEMPERATURE + MODERATE HEADACHE
+// ==========================================
+
+else if (
+    strongestRule &&
+    strongestRule.number === 3
+) {
+
+    ruleRecommendations.push(
+        "Your elevated temperature and moderate headache should be monitored closely, especially if your symptoms worsen."
+    );
+
+    ruleRecommendations.push(
+        "Stay hydrated, rest, and monitor your temperature and headache for signs of worsening."
+    );
+
+}
+
+
+// ==========================================
+// RULE 2
+// NORMAL TEMPERATURE + MODERATE SYMPTOMS
+// ==========================================
+
+else if (
+    strongestRule &&
+    strongestRule.number === 2
+) {
+
+    ruleRecommendations.push(
+        "Moderate headache and cough symptoms should be monitored closely, especially if they worsen or persist."
+    );
+
+    ruleRecommendations.push(
+        "Prioritize rest and monitor these symptoms for any increase in severity."
+    );
+
+}
+
+
+// ==========================================
+// RULE 1
+// NORMAL TEMPERATURE + MILD SYMPTOMS
+// ==========================================
+
+else if (
+    strongestRule &&
+    strongestRule.number === 1
+) {
+
+    ruleRecommendations.push(
+        "Your current assessment is mainly influenced by mild symptoms while your temperature remains within the normal range."
+    );
+
+    ruleRecommendations.push(
+        "Continue your normal activities as tolerated while keeping track of any changes in your symptoms."
+    );
+
+}
+
+
+// ==========================================
+// NO ACTIVE RULE
+// ==========================================
+
+else {
+
+    ruleRecommendations.push(
+        "No specific fuzzy rule was strongly activated by the current combination of inputs."
+    );
+
+    ruleRecommendations.push(
+        "Continue monitoring your condition and reassess if your symptoms change."
+    );
+
+}
+
+
+// ==========================================
+// DISPLAY RECOMMENDATIONS
+// ==========================================
+
+const recommendationContainers = [
+
+    document.querySelector(
+        ".recommendation-one-container"
+    ),
+
+    document.querySelector(
+        ".recommendation-two-container"
+    ),
+
+    document.querySelector(
+        ".recommendation-three-container"
+    ),
+
+    document.querySelector(
+        ".recommendation-four-container"
+    )
+
+];
+
+
+const recommendationElements = [
+
+    document.querySelector(
+        ".recommendation-one-text"
+    ),
+
+    document.querySelector(
+        ".recommendation-two-text"
+    ),
+
+    document.querySelector(
+        ".recommendation-three-text"
+    ),
+
+    document.querySelector(
+        ".recommendation-four-text"
+    )
+
+];
+
+
+// ==========================================
+// RECOMMENDATION BACKGROUND COLOR
+// ==========================================
+
+let recommendationBackground = "";
+
+
+if (finalRisk === "Low Risk") {
+
+    recommendationBackground =
+        "#E8F5E9";
+
+}
+
+else if (finalRisk === "Moderate Risk") {
+
+    recommendationBackground =
+        "#FFF4E5";
+
+}
+
+else if (finalRisk === "High Risk") {
+
+    recommendationBackground =
+        "#FDECEC";
+
+}
+
+
+// Apply background
+recommendationContainers.forEach(
+    container => {
+
+        if (container) {
+
+            container.style.backgroundColor =
+                recommendationBackground;
+
+        }
+
+    }
+);
+
+
+// ==========================================
+// CLEAR OLD TEXT
+// ==========================================
+
+recommendationElements.forEach(
+    element => {
+
+        if (element) {
+
+            element.textContent = "";
+
+        }
+
+    }
+);
+
+
+// ==========================================
+// DISPLAY 2 DEFAULT RECOMMENDATIONS
+// ==========================================
+
+defaultRecommendations
+    .slice(0, 2)
     .forEach(
         (recommendation, index) => {
 
             const element =
-            recommendationElements[index];
+                recommendationElements[index];
 
             if (element) {
 
                 element.textContent =
-                recommendation;
+                    recommendation;
+
             }
+
         }
     );
 
 
-    console.log(
-        "======== RECOMMENDATIONS ======="
-    );
+// ==========================================
+// DISPLAY 2 RULE RECOMMENDATIONS
+// ==========================================
 
-    console.log(
-        recommendations
-    );
+ruleRecommendations
+    .slice(0, 2)
+    .forEach(
+        (recommendation, index) => {
 
+            const element =
+                recommendationElements[index + 2];
+
+            if (element) {
+
+                element.textContent =
+                    recommendation;
+
+            }
+
+        }
+    );
 
 }

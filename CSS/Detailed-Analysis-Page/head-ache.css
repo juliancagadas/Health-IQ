@@ -1,13 +1,11 @@
 .headache-graph-card {
     width: 100%;
     max-width: 1000px;
-    margin: 30px auto;
+    margin: -2vh auto;
     padding: 25px;
-
     background: white;
     border-radius: 18px;
-    border: 1px solid #e5e5e5;
-
+    border: 5px solid #020291;
     box-sizing: border-box;
 }
 

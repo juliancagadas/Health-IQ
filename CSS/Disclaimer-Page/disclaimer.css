@@ -1,0 +1,30 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.disclaimer-container {
+width: 60%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+row-gap: 2vh;
+text-align: center;
+margin-top: 15vh;
+}
+
+.disclaimer {
+  font-family: "Google, Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(12, 201, 5);
+
+}
+
+.disclaimer-description {
+  font-family: "Google, Sans", sans-serif;
+  font-size: 1.5rem;
+
+}

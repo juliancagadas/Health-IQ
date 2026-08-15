@@ -4,7 +4,7 @@
     margin: 30px auto;
     padding: 30px;
     background: white;
-    border: 1px solid #e5e5e5;
+    border: 5px solid #020291;
     border-radius: 20px;
     box-sizing: border-box;
 }
@@ -72,13 +72,13 @@
 
 /* Axis text */
 
-#temperature-graph text {
+text {
     font-family: Arial, sans-serif;
     font-size: 14px;
     fill: #555;
 }
 
-#temperature-graph .axis-title {
+.axis-title, .headache-axis-title {
     font-weight: bold;
     fill: #333;
 }
@@ -135,6 +135,35 @@
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.low-color-symbol {
+    height: 1vh;
+    width: 0.5vw;
+    border-radius: 50%;
+    background-color: #4f8cff;
+    margin-right: 1vw;
+}
+
+.normal-color-symbol {
+    height: 1vh;
+    width: 0.5vw;
+    border-radius: 50%;
+    background-color: #19b47a;
+    margin-right: 1vw;
+}
+
+.high-color-symbol {
+    height: 1vh;
+    width: 0.5vw;
+    border-radius: 50%;
+    background-color: #ef6464;
+    margin-right: 1vw;
+}
+
+.low-container {
+    display: flex;
     align-items: center;
 }
 

@@ -40,11 +40,13 @@ function getBodyTemperatureFuzzy(temp) {
     if (temp <= 35) {
 
         bodyNormal = 0;
-
+    
+    // Normal increasing formula
     } else if (temp <= 37) {
 
         bodyNormal = (temp - 35) / 2;
-
+    
+    // Nomral decreasing or going down formula
     } else if (temp <= 39) {
 
         bodyNormal = (39 - temp) / 2;
@@ -60,12 +62,14 @@ function getBodyTemperatureFuzzy(temp) {
     // HIGH
     // =================================================
 
+    // High is on 0 status
     if (temp <= 37) {
 
         bodyHigh = 0;
 
     } else if (temp <= 39) {
 
+        // High Increasing
         bodyHigh = (temp - 37) / 2;
 
     } else {
@@ -104,30 +108,22 @@ bodySlider.addEventListener("input", () => {
 
 
     // Get fuzzy values
-    const fuzzy =
-        getBodyTemperatureFuzzy(temp);
+    const fuzzy = getBodyTemperatureFuzzy(temp);
 
 
     // =================================================
     // GRAPH
     // =================================================
 
-    document.querySelector("#graph-low").textContent =
-        (fuzzy.low * 100).toFixed(0) + "%";
-
-    document.querySelector("#graph-normal").textContent =
-        (fuzzy.normal * 100).toFixed(0) + "%";
-
-    document.querySelector("#graph-high").textContent =
-        (fuzzy.high * 100).toFixed(0) + "%";
-
+    document.querySelector("#graph-low").textContent = (fuzzy.low * 100).toFixed(0) + "%";
+    document.querySelector("#graph-normal").textContent = (fuzzy.normal * 100).toFixed(0) + "%";
+    document.querySelector("#graph-high").textContent = (fuzzy.high * 100).toFixed(0) + "%";
 
     // =================================================
     // GRAPH MARKER
     // =================================================
 
-    const marker =
-        document.querySelector("#body-temp-marker");
+    const marker = document.querySelector("#body-temp-marker");
 
     const minTemp = 35;
     const maxTemp = 40;
@@ -152,14 +148,11 @@ bodySlider.addEventListener("input", () => {
 // MAKE FUNCTION AVAILABLE TO OTHER JS FILES
 // =====================================================
 
-window.getBodyTemperatureFuzzy =
-    getBodyTemperatureFuzzy;
+window.getBodyTemperatureFuzzy = getBodyTemperatureFuzzy;
 
 
 // =====================================================
 // INITIAL DISPLAY
 // =====================================================
 
-bodySlider.dispatchEvent(
-    new Event("input")
-);
+bodySlider.dispatchEvent(new Event("input"));

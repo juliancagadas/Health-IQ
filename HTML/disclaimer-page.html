@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disclaimer Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../CSS/Landing-Page/header.css">
+
+    <link rel="stylesheet" href="../CSS/Disclaimer-Page/disclaimer.css">
+    <link rel="stylesheet" href="../CSS/Disclaimer-Page/body.css">
+  </head>
+<body>
+    <main>
+            <h1>
+            <div class="header-left-section">
+            
+            <div class="heart-rate-icon-container">
+                <img class="heart-rate-icon" src="../Assets/heart-rate-icon.png" alt="Health IQ Logo">
+            </div>
+                <div class="two-paragraph">
+                    <p class="health-paragraph">Health<span class="iq">IQ</span></p>
+                    <p class="fuzzy-paragraph">Fuzzy Logic Health Assistant</p>
+                </div>
+            </div>
+        
+            <div class="header-right-section">
+                <button class="nav active" onclick="goToLanding()">Home</button>
+                <button class="nav">About</button>
+                <button class="nav" onclick="goToHowItWorks()">How It Works</button>
+                <button class="nav">Disclaimer</button>
+
+                <span class="nav-indicator"></span>
+            </div>
+
+        </h1>
+      <div class="disclaimer-container">
+        <p class="disclaimer">DISCLAIMER</p>
+        <p class="disclaimer-description">HealthIQ is a school project that uses fuzzy logic to provide general health insights based on the information provided by the user. The results are for informational purposes only and are not intended to diagnose or treat medical conditions or replace professional medical advice.</p>
+      </div>
+
+    </main>
+
+    <script src="../JS/Landing-Page/header-slider.js"></script>
+
+    <script src="../JS/Page-Transform/page-Transform.js"></script>
+
+</body>
+</html>

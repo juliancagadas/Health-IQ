@@ -9,224 +9,27 @@ analyzeButton.addEventListener("click", () => {
     // RAW INPUTS
     // =================================================
 
-    const bodyTemperature =
-        Number(
-            document.querySelector(".body-slider").value
-        );
-
-    const heartRate =
-        Number(
-            document.querySelector(".heart-slider").value
-        );
-
-    const headache =
-        Number(
-            document.querySelector(".head-slider").value
-        );
-
-    const cough =
-        Number(
-            document.querySelector(".cough-slider").value
-        );
-
-    const fatigue =
-        Number(
-            document.querySelector(".fatigue-slider").value
-        );
-
-    const nausea =
-        Number(
-            document.querySelector(".nausea-slider").value
-        );
-
-    const soreThroat =
-        Number(
-            document.querySelector(".sore-throat-slider").value
-        );
-
-    const difficultyBreathing =
-        Number(
-            document.querySelector(".difficulty-slider").value
-        );
-
+    const bodyTemperature = Number(document.querySelector(".body-slider").value);
+    const heartRate = Number(document.querySelector(".heart-slider").value);
+    const headache = Number(document.querySelector(".head-slider").value);
+    const cough = Number(document.querySelector(".cough-slider").value);
+    const fatigue = Number(document.querySelector(".fatigue-slider").value);
+    const nausea = Number(document.querySelector(".nausea-slider").value);
+    const soreThroat = Number(document.querySelector(".sore-throat-slider").value);
+    const difficultyBreathing = Number(document.querySelector(".difficulty-slider").value);
 
     // =================================================
     // FUZZIFICATION
     // =================================================
 
-    const bodyFuzzy =
-        getBodyTemperatureFuzzy(bodyTemperature);
-
-
-    const heartFuzzy =
-        getHeartRateFuzzy(heartRate);
-
-    
-    const headacheFuzzy =
-    getHeadacheFuzzy(headache);
-
-
-    const coughFuzzy =
-    getCoughFuzzy(cough);
-
-
-    const fatigueFuzzy =
-    getFatigueFuzzy(fatigue);
-
-    const nauseaFuzzy =
-    getNauseaFuzzy(nausea);
-
-    const soreThroatFuzzy =
-    getSoreThroatFuzzy(soreThroat);
-
-    const difficultyBreathingFuzzy =
-    getDifficultyBreathingFuzzy(difficultyBreathing);
-
-    // =================================================
-    // DEBUG
-    // =================================================
-
-    console.log("========== BODY TEMPERATURE ==========");
-
-    console.log(
-        "Low:",
-        (bodyFuzzy.low * 100).toFixed(0) + "%"
-    );
-
-    console.log(
-        "Normal:",
-        (bodyFuzzy.normal * 100).toFixed(0) + "%"
-    );
-
-    console.log(
-        "High:",
-        (bodyFuzzy.high * 100).toFixed(0) + "%"
-    );
-
-
-    console.log("========== HEART RATE ==========");
-
-    console.log(
-        "Low:",
-        (heartFuzzy.low * 100).toFixed(0) + "%"
-    );
-
-    console.log(
-        "Normal:",
-        (heartFuzzy.normal * 100).toFixed(0) + "%"
-    );
-
-    console.log(
-        "High:",
-        (heartFuzzy.high * 100).toFixed(0) + "%"
-    );
-
-
-    console.log("========== HEADACHE ==========");
-
-console.log(
-    "Mild:",
-    (headacheFuzzy.mild * 100).toFixed(0) + "%"
-);
-
-console.log(
-    "Moderate:",
-    (headacheFuzzy.moderate * 100).toFixed(0) + "%"
-);
-
-console.log(
-    "Severe:",
-    (headacheFuzzy.severe * 100).toFixed(0) + "%"
-);
-
-
-console.log("========== COUGH ==========");
-
-console.log(
-    "Mild:",
-    (coughFuzzy.mild * 100).toFixed(0) + "%"
-);
-
-console.log(
-    "Moderate:",
-    (coughFuzzy.moderate * 100).toFixed(0) + "%"
-);
-
-console.log(
-    "Severe:",
-    (coughFuzzy.severe * 100).toFixed(0) + "%"
-);
-
-
-console.log("========== FATIGUE ==========");
-
-console.log(
-    "Mild:",
-    (fatigueFuzzy.mild * 100).toFixed(0) + "%"
-);
-
-console.log(
-    "Moderate:",
-    (fatigueFuzzy.moderate * 100).toFixed(0) + "%"
-);
-
-console.log(
-    "Severe:",
-    (fatigueFuzzy.severe * 100).toFixed(0) + "%"
-);
-
-
-console.log("========== NAUSEA ==========");
-
-console.log(
-    "Mild:",
-    (nauseaFuzzy.mild * 100).toFixed(0) + "%"
-);
-
-console.log(
-    "Moderate:",
-    (nauseaFuzzy.moderate * 100).toFixed(0) + "%"
-);
-
-console.log(
-    "Severe:",
-    (nauseaFuzzy.severe * 100).toFixed(0) + "%"
-);
-
-
-console.log("========== SORE THROAT ==========");
-
-console.log(
-    "Mild:",
-    (soreThroatFuzzy.mild * 100).toFixed(0) + "%"
-);
-
-console.log(
-    "Moderate:",
-    (soreThroatFuzzy.moderate * 100).toFixed(0) + "%"
-);
-
-console.log(
-    "Severe:",
-    (soreThroatFuzzy.severe * 100).toFixed(0) + "%"
-);
-
-console.log("========== DIFFICULTY BREATHING ==========");
-
-console.log(
-    "Mild:",
-    (difficultyBreathingFuzzy.mild * 100).toFixed(0) + "%"
-);
-
-console.log(
-    "Moderate:",
-    (difficultyBreathingFuzzy.moderate * 100).toFixed(0) + "%"
-);
-
-console.log(
-    "Severe:",
-    (difficultyBreathingFuzzy.severe * 100).toFixed(0) + "%"
-);
+    const bodyFuzzy = getBodyTemperatureFuzzy(bodyTemperature);
+    const heartFuzzy = getHeartRateFuzzy(heartRate);
+    const headacheFuzzy = getHeadacheFuzzy(headache);
+    const coughFuzzy = getCoughFuzzy(cough);
+    const fatigueFuzzy = getFatigueFuzzy(fatigue);
+    const nauseaFuzzy = getNauseaFuzzy(nausea);
+    const soreThroatFuzzy = getSoreThroatFuzzy(soreThroat);
+    const difficultyBreathingFuzzy = getDifficultyBreathingFuzzy(difficultyBreathing);
 
     // =================================================
     // HEALTH DATA
@@ -235,126 +38,54 @@ console.log(
     const healthData = {
 
         // RAW VALUES
-
-        bodyTemperature:
-            bodyTemperature,
-
-        heartRate:
-            heartRate,
-
-        headache:
-            headache,
-
-        cough:
-            cough,
-
-        fatigue:
-            fatigue,
-
-        nausea:
-            nausea,
-
-        soreThroat:
-            soreThroat,
-
-        difficultyBreathing:
-            difficultyBreathing,
-
+        bodyTemperature: bodyTemperature,
+        heartRate: heartRate,
+        headache: headache,
+        cough: cough,
+        fatigue: fatigue,
+        nausea: nausea,
+        soreThroat: soreThroat,
+        difficultyBreathing: difficultyBreathing,
 
         // BODY FUZZY
-
-        bodyLow:
-            bodyFuzzy.low,
-
-        bodyNormal:
-            bodyFuzzy.normal,
-
-        bodyHigh:
-            bodyFuzzy.high,
-
+        bodyLow: bodyFuzzy.low,
+        bodyNormal: bodyFuzzy.normal,
+        bodyHigh: bodyFuzzy.high,
 
         // HEART FUZZY
-
-        heartLow:
-            heartFuzzy.low,
-
-        heartNormal:
-            heartFuzzy.normal,
-
-        heartHigh:
-            heartFuzzy.high,
-        
+        heartLow: heartFuzzy.low,
+        heartNormal: heartFuzzy.normal,
+        heartHigh: heartFuzzy.high,
     
         // HEADACHE FUZZY
-
-        headMild:
-            headacheFuzzy.mild,
-
-        headModerate:
-            headacheFuzzy.moderate,
-
-        headSevere:
-            headacheFuzzy.severe,
-
+        headMild: headacheFuzzy.mild,
+        headModerate: headacheFuzzy.moderate,
+        headSevere: headacheFuzzy.severe,
         
         // COUGH FUZZY
-
-        coughMild:
-            coughFuzzy.mild,
-
-        coughModerate:
-            coughFuzzy.moderate,
-
-        coughSevere:
-            coughFuzzy.severe,
-
+        coughMild: coughFuzzy.mild,
+        coughModerate: coughFuzzy.moderate,
+        coughSevere: coughFuzzy.severe,
         
         // FATIGUE FUZZY
-
-        fatigueMild:
-            fatigueFuzzy.mild,
-
-        fatigueModerate:
-            fatigueFuzzy.moderate,
-
-        fatigueSevere:
-            fatigueFuzzy.severe,
-
+        fatigueMild: fatigueFuzzy.mild,
+        fatigueModerate: fatigueFuzzy.moderate,
+        fatigueSevere: fatigueFuzzy.severe,
         
         // NAUSEA FUZZY
-
-        nauseaMild:
-            nauseaFuzzy.mild,
-
-        nauseaModerate:
-            nauseaFuzzy.moderate,
-
-        nauseaSevere:
-            nauseaFuzzy.severe,
-
+        nauseaMild: nauseaFuzzy.mild,
+        nauseaModerate: nauseaFuzzy.moderate,
+        nauseaSevere: nauseaFuzzy.severe,
         
         // SORE THROAT FUZZY
+        soreMild: soreThroatFuzzy.mild,
+        soreModerate: soreThroatFuzzy.moderate,
+        soreSevere: soreThroatFuzzy.severe,
 
-        soreMild:
-            soreThroatFuzzy.mild,
-
-        soreModerate:
-            soreThroatFuzzy.moderate,
-
-        soreSevere:
-            soreThroatFuzzy.severe,
-
-        
         // DIFFICULTY BREATHING FUZZY
-
-        difficultyMild:
-            difficultyBreathingFuzzy.mild,
-
-        difficultyModerate:
-            difficultyBreathingFuzzy.moderate,
-
-        difficultySevere:
-            difficultyBreathingFuzzy.severe
+        difficultyMild: difficultyBreathingFuzzy.mild,
+        difficultyModerate: difficultyBreathingFuzzy.moderate,
+        difficultySevere: difficultyBreathingFuzzy.severe
 
     };
 
@@ -362,30 +93,7 @@ console.log(
         // FUZZY RULE EVALUATION
         // =================================================
 
-        const riskResult =
-            window.evaluateHealthRules(healthData);
-
-
-        // =================================================
-        // DEBUG FINAL RISK
-        // =================================================
-
-        console.log("========== FINAL RISK ==========");
-
-        console.log(
-            "Low Risk:",
-            (riskResult.low * 100).toFixed(0) + "%"
-        );
-
-        console.log(
-            "Moderate Risk:",
-            (riskResult.moderate * 100).toFixed(0) + "%"
-        );
-
-        console.log(
-            "High Risk:",
-            (riskResult.high * 100).toFixed(0) + "%"
-        );
+        const riskResult = window.evaluateHealthRules(healthData);
 
         // =================================================
         // FINAL HEALTH STATUS
@@ -404,27 +112,15 @@ console.log(
             finalRiskValue = riskResult.high;
         }
 
-        console.log("========== FINAL HEALTH STATUS ==========");
-
-        console.log("Final Risk:", finalRisk);
-
-        console.log(
-            "Risk Strength:",
-            (finalRiskValue * 100).toFixed(0) + "%"
-        );
-
         // =================================================
         // SAVE RISK RESULTS
         // =================================================
 
-        healthData.riskLow =
-            riskResult.low;
+        healthData.riskLow = riskResult.low;
 
-        healthData.riskModerate =
-            riskResult.moderate;
+        healthData.riskModerate = riskResult.moderate;
 
-        healthData.riskHigh =
-            riskResult.high;
+        healthData.riskHigh = riskResult.high;
 
         // =================================================
         // RULE RESULTS
@@ -436,38 +132,23 @@ console.log(
         // SAVE FINAL HEALTH STATUS
         // =================================================
 
-        healthData.finalRisk =
-            finalRisk;
+        healthData.finalRisk = finalRisk;
 
-        healthData.finalRiskValue =
-            finalRiskValue;
+        healthData.finalRiskValue = finalRiskValue;
 
 
     // =================================================
     // SAVE
     // =================================================
 
-    localStorage.setItem(
-        "healthAssessment",
-        JSON.stringify(healthData)
-    );
-
-
-    console.log(
-        "FINAL HEALTH DATA:",
-        healthData
-    );
-
+    localStorage.setItem("healthAssessment", JSON.stringify(healthData));
 
 // =================================================
 // SHOW LOADING SCREEN
 // =================================================
 
-const loadingScreen =
-    document.querySelector("#analysis-loading-screen");
-
-const loadingVideo =
-    document.querySelector("#analysis-loading-video");
+const loadingScreen = document.querySelector("#analysis-loading-screen");
+const loadingVideo = document.querySelector("#analysis-loading-video");
 
 
 // Show white loading screen
@@ -476,27 +157,28 @@ loadingScreen.classList.add("active");
 
 // Start gift animation
 loadingVideo.currentTime = 0;
-
 loadingVideo.play();
+
+
 
 
 // =================================================
 // GO TO ANALYSIS PAGE AFTER ANIMATION
 // =================================================
 
-loadingVideo.addEventListener("ended", () => {
+// loadingVideo.addEventListener("ended", () => {
 
-    // Start smooth fade
-    loadingScreen.classList.add("fade-out");
+//     // Start smooth fade
+//     loadingScreen.classList.add("fade-out");
 
-    // Wait for fade animation
-    setTimeout(() => {
+//     // Wait for fade animation
+//     setTimeout(() => {
 
-        window.location.href =
-            "analysis-page.html";
+//         window.location.href =
+//             "analysis-page.html";
 
-    }, 700);
+//     }, 700);
 
-});
+// });
 
 });

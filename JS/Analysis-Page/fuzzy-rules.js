@@ -121,13 +121,3 @@ function evaluateHealthRules(data) {
 // =====================================================
 
 window.evaluateHealthRules = evaluateHealthRules;
-
-
-// =====================================================
-// DEBUG
-// =====================================================
-
-console.log(
-    "FUZZY RULES LOADED:",
-    typeof window.evaluateHealthRules
-);

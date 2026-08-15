@@ -1,0 +1,62 @@
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Google Sans", sans-serif;
+  font-weight: 600;
+}
+
+.formula-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 40vh;
+  width: 40vw;
+
+}
+
+.triangle-mf-title {
+z-index: 1;
+font-size: 1.5rem;
+margin-bottom: 5vh;
+
+}
+
+.movement-stats-container {
+display: flex;
+flex-direction: row;
+margin-bottom: -1vh;
+width: 23vw;
+align-items: center;
+justify-content: space-between;
+z-index: 1;
+
+}
+
+.going-up {
+  color: green;
+
+}
+
+.going-down {
+  color: red;
+
+}
+
+.triangle-mf-side-formula {
+  position: relative;
+  height: auto;
+  width: 100%;
+  margin-top: -10vh;
+}
+
+.examples {
+  font-size: 1.5rem;
+}
+
+.sample-in-numbers-formula {
+  position: relative;
+  height: auto;
+  width: 100%;
+}
+

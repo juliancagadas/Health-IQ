@@ -2,63 +2,46 @@
 // HEART RATE DETAILED GRAPH
 // =====================================================
 
-const savedData =
-    localStorage.getItem("healthAssessment");
+const heartSavedData = localStorage.getItem("healthAssessment");
 
-if (savedData) {
+if (heartSavedData) {
 
-    const data =
-        JSON.parse(savedData);
+    const data = JSON.parse(heartSavedData);
 
 
     // ==========================================
     // CURRENT HEART RATE
     // ==========================================
 
-    const heartRate =
-        Number(data.heartRate);
+    const heartRate = Number(data.heartRate);
 
-    document.querySelector("#graph-heart-rate").textContent =
-        heartRate + " BPM";
+    document.querySelector("#graph-heart-rate").textContent = heartRate + " BPM";
 
 
     // ==========================================
     // FUZZY MEMBERSHIP VALUES
     // ==========================================
 
-    const low =
-        Number(data.heartLow) || 0;
-
-    const normal =
-        Number(data.heartNormal) || 0;
-
-    const high =
-        Number(data.heartHigh) || 0;
+    const low = Number(data.heartLow) || 0;
+    const normal = Number(data.heartNormal) || 0;
+    const high = Number(data.heartHigh) || 0;
 
 
     // ==========================================
     // DISPLAY MEMBERSHIP VALUES
     // ==========================================
 
-    document.querySelector("#graph-heart-low").textContent =
-        (low * 100).toFixed(0) + "%";
-
-    document.querySelector("#graph-heart-normal").textContent =
-        (normal * 100).toFixed(0) + "%";
-
-    document.querySelector("#graph-heart-high").textContent =
-        (high * 100).toFixed(0) + "%";
+    document.querySelector("#graph-heart-low").textContent = (low * 100).toFixed(0) + "%";
+    document.querySelector("#graph-heart-normal").textContent = (normal * 100).toFixed(0) + "%";
+    document.querySelector("#graph-heart-high").textContent = (high * 100).toFixed(0) + "%";
 
 
     // ==========================================
     // MOVE HEART RATE MARKER
     // ==========================================
 
-    const marker =
-        document.querySelector("#heart-rate-marker");
-
-    const point =
-        document.querySelector("#heart-rate-point");
+    const marker = document.querySelector("#heart-rate-marker");
+    const point = document.querySelector("#heart-rate-point");
 
 
     const minHeartRate = 30;
@@ -100,37 +83,8 @@ if (savedData) {
     }
 
 
-    const y =
-        330 -
-        (strongestMembership * 290);
-
+    const y = 330 - (strongestMembership * 290);
 
     point.setAttribute("cy", y);
 
-
-    // ==========================================
-    // DEBUG
-    // ==========================================
-
-    console.log("========== HEART RATE GRAPH ==========");
-
-    console.log(
-        "Heart Rate:",
-        heartRate + " BPM"
-    );
-
-    console.log(
-        "Low:",
-        (low * 100).toFixed(0) + "%"
-    );
-
-    console.log(
-        "Normal:",
-        (normal * 100).toFixed(0) + "%"
-    );
-
-    console.log(
-        "High:",
-        (high * 100).toFixed(0) + "%"
-    );
 }

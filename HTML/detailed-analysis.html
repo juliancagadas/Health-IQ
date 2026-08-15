@@ -31,14 +31,14 @@
             <div class="header-right-section">
                 <button class="nav active" onclick="goToLanding()">Home</button>
                 <button class="nav">About</button>
-                <button class="nav">How It Works</button>
-                <button class="nav">Disclaimer</button>
+                <button class="nav" onclick="goToHowItWorks()">How It Works</button>
+                <button class="nav" onclick="goToDisclaimer()">Disclaimer </button>
 
                 <span class="nav-indicator"></span>
             </div>
         </h1>
 
-        <!--Body Temperature Section-->
+    <!--Body Temperature Section-->
     <section class="fuzzy-analysis-card">
 
     <div class="fuzzy-analysis-header">
@@ -51,9 +51,6 @@
         <strong id="graph-temperature">37.0 °C</strong>
     </div>
 
-    <p class="membership-title">
-        Membership
-    </p>
 
     <div class="fuzzy-graph-container">
 
@@ -68,21 +65,18 @@
 
             <!-- Y Labels -->
             <text x="45"y="335">0%</text>
-            
             <text x="40"y="190">50%</text>
             <text x="40"y="45">100%</text>
 
             <!-- X Labels -->
             <text x="75" y="355">35</text>
             <text x="208" y="355">36</text>
-
             <text x="341" y="355">37</text>
             <text x="475" y="355">38</text>
             <text x="608" y="355">39</text>
             <text x="742" y="355">40</text>
 
             <!-- Axis title -->
-            <text x="385" y="385" class="axis-title"> Temperature (°C) </text>
             <text x="5" y="20" class="axis-title"> Membership </text>
 
             <!-- LOW -->
@@ -92,7 +86,7 @@
             <polyline points="80,330 348,40 616,330" class="membership-normal"/>
 
             <!-- HIGH -->
-            <polyline points="348,330 616,40 750,330" class="membership-high"/>
+            <polyline points="348,330 616,40 750,40" class="membership-high"/>
 
             <!-- Current temperature line -->
             <line
@@ -123,17 +117,26 @@
     <div class="membership-results">
 
         <div class="membership-box">
-            <span>Low</span>
+            <div class="low-container">
+                <p class="low-color-symbol"> </p>
+                <span>Low</span>
+            </div>
             <strong id="graph-low">0%</strong>
         </div>
 
         <div class="membership-box">
-            <span>Normal</span>
+            <div class="normal-container low-container">
+                <p class="normal-color-symbol"> </p>
+                <span>Normal</span>
+            </div>
             <strong id="graph-normal">100%</strong>
         </div>
 
         <div class="membership-box">
-            <span>High</span>
+            <div class="high-container low-container">
+                <p class="high-color-symbol"> </p>
+                <span>High</span>
+            </div>
             <strong id="graph-high">0%</strong>
         </div>
 
@@ -154,29 +157,17 @@
         <strong id="graph-heart-rate">75 BPM</strong>
     </div>
 
+
     <div class="fuzzy-graph-container">
 
-        <svg id="heart-rate-graph"
-            viewBox="0 0 800 400"
-            preserveAspectRatio="none">
-
-            <!-- Axes -->
-            <line x1="80" y1="40"
-                  x2="80" y2="330"
-                  class="graph-axis"/>
-
-            <line x1="80" y1="330"
-                  x2="750" y2="330"
-                  class="graph-axis"/>
-
+        <svg id="heart-rate-graph" viewBox="0 0 800 400" preserveAspectRatio="none">
             <!-- Grid -->
-            <line x1="80" y1="185"
-                  x2="750" y2="185"
-                  class="graph-grid"/>
+            <line x1="80" y1="40" x2="80" y2="330" class="graph-axis"/>
+            <line x1="80" y1="330" x2="750" y2="330" class="graph-axis"/>
 
-            <line x1="80" y1="40"
-                  x2="750" y2="40"
-                  class="graph-grid"/>
+            <!-- Horizontal grid -->
+            <line x1="80" y1="185" x2="750" y2="185" class="graph-grid"/>
+            <line x1="80" y1="40" x2="750" y2="40" class="graph-grid"/>
 
             <!-- Y Labels -->
             <text x="45" y="335">0%</text>
@@ -184,330 +175,172 @@
             <text x="40" y="45">100%</text>
 
             <!-- X Labels -->
-            <text x="70" y="355">30</text>
-            <text x="200" y="355">50</text>
-            <text x="330" y="355">70</text>
-            <text x="460" y="355">90</text>
-            <text x="590" y="355">110</text>
-            <text x="730" y="355">150</text>
+            <text x="75" y="355">30</text>
+            <text x="185" y="355">50</text>
+            <text x="295" y="355">70</text>
+            <text x="415" y="355">90</text>
+            <text x="515" y="355">110</text>
+            <text x="625" y="355">130</text>
+            <text x="735" y="355">150</text>
 
-            <text x="350" y="385"
-                  class="axis-title">
-                Heart Rate (BPM)
-            </text>
-
-            <text x="5" y="20"
-                  class="axis-title">
-                Membership
-            </text>
-
+            <!-- Axis title -->
+            <text x="5" y="20" class="axis-title"> Membership </text>
 
             <!-- LOW -->
-            <polyline
-                points="80,40 80,40 300,330"
-                class="membership-low"
-            />
-
+            <polyline points="80,40 300,330" class="membership-low" />
 
             <!-- NORMAL -->
-            <polyline
-                points="210,330 340,40 500,330"
-                class="membership-normal"
-            />
-
+            <polyline points="80, 330 302,40 515,330" class="membership-normal" />
 
             <!-- HIGH -->
-            <polyline
-                points="430,330 560,40 750,330"
-                class="membership-high"
-            />
-
+            <polyline points="305,330 527,40 750,40" class="membership-high" />
 
             <!-- Current marker -->
-            <line
-                id="heart-rate-marker"
-                x1="360"
-                y1="40"
-                x2="360"
-                y2="330"
-                class="temperature-marker"
-            />
+            <line id="heart-rate-marker" x1="341" y1="40" x2="341" y2="330" class="temperature-marker"/>
 
             <circle
                 id="heart-rate-point"
-                cx="360"
+                cx="341"
                 cy="40"
-                r="7"
+                r="8"
                 class="temperature-point"
             />
 
         </svg>
-
     </div>
 
 
     <!-- Results -->
-
     <div class="membership-results">
 
         <div class="membership-box">
-            <span>Low</span>
+            <div class="low-container">
+                <p class="low-color-symbol"> </p>
+                <span>Low</span>
+            </div>
             <strong id="graph-heart-low">0%</strong>
         </div>
 
         <div class="membership-box">
-            <span>Normal</span>
+            <div class="normal-container low-container">
+                <p class="normal-color-symbol"> </p>
+                <span>Normal</span>
+            </div>
             <strong id="graph-heart-normal">100%</strong>
         </div>
 
         <div class="membership-box">
-            <span>High</span>
+            <div class="high-container low-container">
+                <p class="high-color-symbol"> </p>
+                <span>High</span>
+            </div>
             <strong id="graph-heart-high">0%</strong>
         </div>
+
 
     </div>
 
 </section>
 
+
     <!--HEAD ACHE GRAPH SECTION-->>
 <div class="headache-graph-card">
 
-    <h2>Headache Severity Analysis</h2>
-    <p class="headache-subtitle">Fuzzy membership visualization</p>
+    <div class="fuzzy-analysis-header">
+        <h2>Headache Severity Analysis</h2>
+        <p>Fuzzy membership visualization</p>
+    </div>
 
 
     <!-- CURRENT VALUE -->
-
-    <div class="headache-current-value-box">
+    <div class="headache-info temperature-info">
         <span>Current Headache Severity:</span>
         <strong id="graph-headache-value">2.0 / 10</strong>
     </div>
 
 
-    <p class="headache-membership-title">
-        Membership
-    </p>
-
-
     <!-- GRAPH -->
-
     <div class="headache-graph-wrapper">
 
-        <svg
-            id="headache-graph"
-            viewBox="0 0 800 400">
-
+        <svg id="headache-graph" viewBox="0 0 800 400" preserveAspectRatio="none">
             <!-- Y AXIS -->
-
-            <line
-                x1="70"
-                y1="40"
-                x2="70"
-                y2="330"
-                class="headache-axis"
-            />
-
-            <!-- X AXIS -->
-
-            <line
-                x1="70"
-                y1="330"
-                x2="750"
-                y2="330"
-                class="headache-axis"
-            />
-
+            <line x1="80" y1="40" x2="80" y2="330" class="headache-axis"/>
+            <line x1="80" y1="330"x2="750" y2="330" class="headache-axis"/>
 
             <!-- 100% GRID -->
+            <line x1="80" y1="185" x2="750" y2="185" class="headache-grid-line"/>
+            <line x1="80" y1="40" x2="750" y2="40" class="headache-grid-line"/>
 
-            <line
-                x1="70"
-                y1="40"
-                x2="750"
-                y2="40"
-                class="headache-grid-line"
-            />
+            <!-- Y AXIS LABELS -->
+            <text x="45" y="335"> 0% </text>
+            <text x="40" y="190"> 50% </text>
+            <text x="40" y="45"> 100% </text>
 
+            <!-- X AXIS LABELS -->
+            <text x="75" y="355"> 0 </text>
+            <text x="210" y="355"> 2 </text>
+            <text x="349" y="355"> 4 </text>
+            <text x="475" y="355"> 6 </text>
+            <text x="610" y="355"> 8 </text>
+            <text x="735" y="355"> 10 </text>
 
-            <!-- 50% GRID -->
-
-            <line
-                x1="70"
-                y1="185"
-                x2="750"
-                y2="185"
-                class="headache-grid-line"
-            />
-
-
-            <!-- 0% GRID -->
-
-            <line
-                x1="70"
-                y1="330"
-                x2="750"
-                y2="330"
-                class="headache-grid-line"
-            />
-
+            <!-- X AXIS TITLE -->
+            <text x="5" y="20" class="headache-axis-title"> Membership</text>
 
             <!-- MILD -->
-
-            <polyline
-                points="70,40 410,330"
-                class="mild-graph"
-            />
-
+            <polyline points="80,40 355,330" class="mild-graph"/>
 
             <!-- MODERATE -->
-
-            <polyline
-                points="274,330 410,40 614,330"
-                class="moderate-graph"
-            />
-
+            <polyline points="90, 330 355, 40 610,330" class="moderate-graph"/>
 
             <!-- SEVERE -->
-
-            <polyline
-                points="478,330 750,40"
-                class="severe-graph"
-            />
-
+            <polyline points="352,330 617,40 750, 40" class="severe-graph"/>
 
             <!-- CURRENT VALUE LINE -->
-
-            <line
-                id="headache-marker"
-                x1="206"
-                y1="40"
-                x2="206"
-                y2="330"
-                class="headache-marker"
-            />
-
+            <line id="headache-marker" x1="341" y1="40" x2="341" y2="330" class="headache-marker"/>
 
             <!-- CURRENT VALUE DOT -->
-
             <circle
                 id="headache-point"
-                cx="206"
+                cx="341"
                 cy="40"
                 r="8"
                 class="headache-point"
             />
 
-
-            <!-- Y AXIS LABELS -->
-
-            <text
-                x="25"
-                y="45"
-                class="headache-axis-label"
-            >
-                100%
-            </text>
-
-            <text
-                x="25"
-                y="190"
-                class="headache-axis-label"
-            >
-                50%
-            </text>
-
-            <text
-                x="35"
-                y="335"
-                class="headache-axis-label"
-            >
-                0%
-            </text>
-
-
-            <!-- X AXIS LABELS -->
-
-            <text x="65" y="355"
-                class="headache-axis-label">
-                0
-            </text>
-
-            <text x="200" y="355"
-                class="headache-axis-label">
-                2
-            </text>
-
-            <text x="336" y="355"
-                class="headache-axis-label">
-                4
-            </text>
-
-            <text x="472" y="355"
-                class="headache-axis-label">
-                6
-            </text>
-
-            <text x="608" y="355"
-                class="headache-axis-label">
-                8
-            </text>
-
-            <text x="742" y="355"
-                class="headache-axis-label">
-                10
-            </text>
-
-
-            <!-- X AXIS TITLE -->
-
-            <text
-                x="340"
-                y="385"
-                class="headache-axis-title"
-            >
-                Headache Severity
-            </text>
-
         </svg>
-
     </div>
 
 
-    <!-- MEMBERSHIP RESULTS -->
-
+    <!-- RESULTS -->
     <div class="headache-membership-results">
 
         <div class="headache-membership-box">
-
-            <span>Mild</span>
-
-            <strong id="graph-headache-mild">
-                0%
-            </strong>
-
+            <div class="low-container">
+                <p class="low-color-symbol"> </p>
+                <span>Mild</span>
+            </div>
+            <strong id="graph-headache-mild">0%</strong>
         </div>
 
 
         <div class="headache-membership-box">
-
-            <span>Moderate</span>
-
-            <strong id="graph-headache-moderate">
-                0%
-            </strong>
-
+            <div class="normal-container low-container">
+                <p class="normal-color-symbol"> </p>
+                <span>Moderate</span>
+            </div>
+            <strong id="graph-headache-moderate">0%</strong>
         </div>
 
 
         <div class="headache-membership-box">
-
-            <span>Severe</span>
-
-            <strong id="graph-headache-severe">
-                0%
-            </strong>
-
+            <div class="high-container low-container">
+                <p class="high-color-symbol"> </p>
+                <span>Severe</span>
+            </div>
+            <strong id="graph-headache-severe">0%</strong>
         </div>
+
 
     </div>
 

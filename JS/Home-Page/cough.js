@@ -1,11 +1,6 @@
-const coughSlider =
-    document.querySelector(".cough-slider");
-
-const coughValueBox =
-    document.querySelector(".cough-value");
-
-const coughValueStatus =
-    document.querySelector(".cough-status");
+const coughSlider = document.querySelector(".cough-slider");
+const coughValueBox = document.querySelector(".cough-value");
+const coughValueStatus = document.querySelector(".cough-status");
 
 
 // =====================================================
@@ -119,53 +114,29 @@ function getCoughFuzzy(coughLevel) {
 
 coughSlider.addEventListener("input", () => {
 
-    const coughLevel =
-        Number(coughSlider.value);
-
-
-    coughValueBox.textContent =
-        coughLevel.toFixed(1) + " / 10";
-
-
-    const fuzzy =
-        getCoughFuzzy(coughLevel);
-
+    const coughLevel = Number(coughSlider.value);
+    coughValueBox.textContent = coughLevel.toFixed(1) + " / 10";
+    const fuzzy = getCoughFuzzy(coughLevel);
 
     // =================================================
     // GRAPH VALUES
     // =================================================
 
-    const graphMild =
-        document.querySelector("#graph-cough-mild");
-
-    const graphModerate =
-        document.querySelector("#graph-cough-moderate");
-
-    const graphSevere =
-        document.querySelector("#graph-cough-severe");
+    const graphMild = document.querySelector("#graph-cough-mild");
+    const graphModerate = document.querySelector("#graph-cough-moderate");
+    const graphSevere = document.querySelector("#graph-cough-severe");
 
 
     if (graphMild) {
-
-        graphMild.textContent =
-            (fuzzy.mild * 100).toFixed(0) + "%";
-
+        graphMild.textContent = (fuzzy.mild * 100).toFixed(0) + "%";
     }
-
 
     if (graphModerate) {
-
-        graphModerate.textContent =
-            (fuzzy.moderate * 100).toFixed(0) + "%";
-
+        graphModerate.textContent = (fuzzy.moderate * 100).toFixed(0) + "%";
     }
 
-
     if (graphSevere) {
-
-        graphSevere.textContent =
-            (fuzzy.severe * 100).toFixed(0) + "%";
-
+        graphSevere.textContent = (fuzzy.severe * 100).toFixed(0) + "%";
     }
 
 });
@@ -175,14 +146,10 @@ coughSlider.addEventListener("input", () => {
 // MAKE FUNCTION AVAILABLE TO analyze-health.js
 // =====================================================
 
-window.getCoughFuzzy =
-    getCoughFuzzy;
-
+window.getCoughFuzzy = getCoughFuzzy;
 
 // =====================================================
 // INITIAL CALCULATION
 // =====================================================
 
-coughSlider.dispatchEvent(
-    new Event("input")
-);
+coughSlider.dispatchEvent(new Event("input"));

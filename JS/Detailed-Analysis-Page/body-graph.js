@@ -2,8 +2,7 @@
 // BODY TEMPERATURE DETAILED GRAPH
 // =====================================================
 
-const savedData =
-    localStorage.getItem("healthAssessment");
+const savedData = localStorage.getItem("healthAssessment");
 
 if (savedData) {
 
@@ -15,8 +14,7 @@ if (savedData) {
     // CURRENT TEMPERATURE
     // ==========================================
 
-    const temperature =
-        Number(data.bodyTemperature);
+    const temperature = Number(data.bodyTemperature);
 
     document.querySelector("#graph-temperature").textContent =
         temperature.toFixed(1) + " °C";
@@ -26,14 +24,9 @@ if (savedData) {
     // FUZZY MEMBERSHIP VALUES
     // ==========================================
 
-    const low =
-        Number(data.bodyLow) || 0;
-
-    const normal =
-        Number(data.bodyNormal) || 0;
-
-    const high =
-        Number(data.bodyHigh) || 0;
+    const low = Number(data.bodyLow) || 0;
+    const normal = Number(data.bodyNormal) || 0;
+    const high = Number(data.bodyHigh) || 0;
 
 
     // ==========================================
@@ -54,11 +47,8 @@ if (savedData) {
     // CURRENT TEMPERATURE MARKER
     // ==========================================
 
-    const marker =
-        document.querySelector("#temperature-marker");
-
-    const point =
-        document.querySelector("#temperature-point");
+    const marker = document.querySelector("#temperature-marker");
+    const point = document.querySelector("#temperature-point");
 
 
     const minTemp = 35;
@@ -77,7 +67,6 @@ if (savedData) {
 
     marker.setAttribute("x1", x);
     marker.setAttribute("x2", x);
-
     point.setAttribute("cx", x);
 
 
@@ -100,37 +89,10 @@ if (savedData) {
     }
 
 
-    const y =
-        330 -
-        (strongestMembership * 290);
+    const y = 330 - (strongestMembership * 290);
 
 
     point.setAttribute("cy", y);
 
 
-    // ==========================================
-    // DEBUG
-    // ==========================================
-
-    console.log("========== BODY GRAPH ==========");
-
-    console.log(
-        "Temperature:",
-        temperature + " °C"
-    );
-
-    console.log(
-        "Low:",
-        (low * 100).toFixed(0) + "%"
-    );
-
-    console.log(
-        "Normal:",
-        (normal * 100).toFixed(0) + "%"
-    );
-
-    console.log(
-        "High:",
-        (high * 100).toFixed(0) + "%"
-    );
 }
