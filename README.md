@@ -6,7 +6,8 @@ https://drive.google.com/file/d/1smXzyhQA9DWvzkh4a1z9jOGSYioKK-OA/view?usp=drive
 # Health-IQ
 A Fuzzy Logic-Based Health Assessment and Recommendation System built with HTML, CSS, and JavaScript.
 
-## 🩺 How to Use HealthIQ
+
+## How to Use HealthIQ?
 
 ### 1. Open HealthIQ
 Launch the HealthIQ application and go to the **Health Assessment** page.
