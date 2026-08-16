@@ -1,8 +1,5 @@
-const nauseaSlider =
-    document.querySelector(".nausea-slider");
-
-const nauseaValueBox =
-    document.querySelector(".nausea-value");
+const nauseaSlider = document.querySelector(".nausea-slider");
+const nauseaValueBox =  document.querySelector(".nausea-value");
 
 
 // =====================================================
@@ -21,22 +18,15 @@ function getNauseaFuzzy(nauseaLevel) {
     // =================================================
 
     if (nauseaLevel <= 0) {
-
         nauseaMild = 1;
-
     }
 
     else if (nauseaLevel >= 4) {
-
         nauseaMild = 0;
-
     }
 
     else {
-
-        nauseaMild =
-            (4 - nauseaLevel) / 4;
-
+        nauseaMild = (4 - nauseaLevel) / 4;
     }
 
 
@@ -45,29 +35,19 @@ function getNauseaFuzzy(nauseaLevel) {
     // =================================================
 
     if (nauseaLevel <= 0) {
-
         nauseaModerate = 0;
-
     }
 
     else if (nauseaLevel <= 4) {
-
-        nauseaModerate =
-            nauseaLevel / 4;
-
+        nauseaModerate = nauseaLevel / 4;
     }
 
     else if (nauseaLevel <= 8) {
-
-        nauseaModerate =
-            (8 - nauseaLevel) / 4;
-
+        nauseaModerate = (8 - nauseaLevel) / 4;
     }
 
     else {
-
         nauseaModerate = 0;
-
     }
 
 
@@ -76,22 +56,15 @@ function getNauseaFuzzy(nauseaLevel) {
     // =================================================
 
     if (nauseaLevel <= 4) {
-
         nauseaSevere = 0;
-
     }
 
     else if (nauseaLevel <= 8) {
-
-        nauseaSevere =
-            (nauseaLevel - 4) / 4;
-
+        nauseaSevere = (nauseaLevel - 4) / 4;
     }
 
     else {
-
         nauseaSevere = 1;
-
     }
 
 
@@ -100,11 +73,9 @@ function getNauseaFuzzy(nauseaLevel) {
     // =================================================
 
     return {
-
         mild: nauseaMild,
         moderate: nauseaModerate,
         severe: nauseaSevere
-
     };
 
 }
@@ -116,53 +87,34 @@ function getNauseaFuzzy(nauseaLevel) {
 
 nauseaSlider.addEventListener("input", () => {
 
-    const nauseaLevel =
-        Number(nauseaSlider.value);
+    const nauseaLevel = Number(nauseaSlider.value);
 
+    nauseaValueBox.textContent = nauseaLevel.toFixed(1) + " / 10";
 
-    nauseaValueBox.textContent =
-        nauseaLevel.toFixed(1) + " / 10";
-
-
-    const fuzzy =
-        getNauseaFuzzy(nauseaLevel);
+    const fuzzy = getNauseaFuzzy(nauseaLevel);
 
 
     // =================================================
     // GRAPH VALUES
     // =================================================
 
-    const graphMild =
-        document.querySelector("#graph-nausea-mild");
-
-    const graphModerate =
-        document.querySelector("#graph-nausea-moderate");
-
-    const graphSevere =
-        document.querySelector("#graph-nausea-severe");
+    const graphMild = document.querySelector("#graph-nausea-mild");
+    const graphModerate = document.querySelector("#graph-nausea-moderate");
+    const graphSevere = document.querySelector("#graph-nausea-severe");
 
 
     if (graphMild) {
-
-        graphMild.textContent =
-            (fuzzy.mild * 100).toFixed(0) + "%";
-
+        graphMild.textContent = (fuzzy.mild * 100).toFixed(0) + "%";
     }
 
 
     if (graphModerate) {
-
-        graphModerate.textContent =
-            (fuzzy.moderate * 100).toFixed(0) + "%";
-
+        graphModerate.textContent = (fuzzy.moderate * 100).toFixed(0) + "%";
     }
 
 
     if (graphSevere) {
-
-        graphSevere.textContent =
-            (fuzzy.severe * 100).toFixed(0) + "%";
-
+        graphSevere.textContent = (fuzzy.severe * 100).toFixed(0) + "%";
     }
 
 });
@@ -172,14 +124,11 @@ nauseaSlider.addEventListener("input", () => {
 // MAKE FUNCTION AVAILABLE TO analyze-health.js
 // =====================================================
 
-window.getNauseaFuzzy =
-    getNauseaFuzzy;
+window.getNauseaFuzzy = getNauseaFuzzy;
 
 
 // =====================================================
 // INITIAL CALCULATION
 // =====================================================
 
-nauseaSlider.dispatchEvent(
-    new Event("input")
-);
+nauseaSlider.dispatchEvent(new Event("input"));

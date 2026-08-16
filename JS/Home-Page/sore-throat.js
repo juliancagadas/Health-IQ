@@ -1,8 +1,5 @@
-const soreThroatSlider =
-    document.querySelector(".sore-throat-slider");
-
-const soreThroatValueBox =
-    document.querySelector(".sore-throat-value");
+const soreThroatSlider = document.querySelector(".sore-throat-slider");
+const soreThroatValueBox = document.querySelector(".sore-throat-value");
 
 
 // =====================================================
@@ -21,22 +18,15 @@ function getSoreThroatFuzzy(soreThroatLevel) {
     // =================================================
 
     if (soreThroatLevel <= 0) {
-
         soreMild = 1;
-
     }
 
     else if (soreThroatLevel >= 4) {
-
         soreMild = 0;
-
     }
 
     else {
-
-        soreMild =
-            (4 - soreThroatLevel) / 4;
-
+        soreMild = (4 - soreThroatLevel) / 4;
     }
 
 
@@ -45,29 +35,19 @@ function getSoreThroatFuzzy(soreThroatLevel) {
     // =================================================
 
     if (soreThroatLevel <= 0) {
-
         soreModerate = 0;
-
     }
 
     else if (soreThroatLevel <= 4) {
-
-        soreModerate =
-            soreThroatLevel / 4;
-
+        soreModerate = soreThroatLevel / 4;
     }
 
     else if (soreThroatLevel <= 8) {
-
-        soreModerate =
-            (8 - soreThroatLevel) / 4;
-
+        soreModerate = (8 - soreThroatLevel) / 4;
     }
 
     else {
-
         soreModerate = 0;
-
     }
 
 
@@ -76,22 +56,15 @@ function getSoreThroatFuzzy(soreThroatLevel) {
     // =================================================
 
     if (soreThroatLevel <= 4) {
-
         soreSevere = 0;
-
     }
 
     else if (soreThroatLevel <= 8) {
-
-        soreSevere =
-            (soreThroatLevel - 4) / 4;
-
+        soreSevere = (soreThroatLevel - 4) / 4;
     }
 
     else {
-
         soreSevere = 1;
-
     }
 
 
@@ -100,11 +73,9 @@ function getSoreThroatFuzzy(soreThroatLevel) {
     // =================================================
 
     return {
-
         mild: soreMild,
         moderate: soreModerate,
         severe: soreSevere
-
     };
 
 }
@@ -116,53 +87,33 @@ function getSoreThroatFuzzy(soreThroatLevel) {
 
 soreThroatSlider.addEventListener("input", () => {
 
-    const soreThroatLevel =
-        Number(soreThroatSlider.value);
+    const soreThroatLevel = Number(soreThroatSlider.value);
 
+    soreThroatValueBox.textContent = soreThroatLevel.toFixed(1) + " / 10";
 
-    soreThroatValueBox.textContent =
-        soreThroatLevel.toFixed(1) + " / 10";
-
-
-    const fuzzy =
-        getSoreThroatFuzzy(soreThroatLevel);
+    const fuzzy = getSoreThroatFuzzy(soreThroatLevel);
 
 
     // =================================================
     // GRAPH VALUES
     // =================================================
 
-    const graphMild =
-        document.querySelector("#graph-sore-mild");
-
-    const graphModerate =
-        document.querySelector("#graph-sore-moderate");
-
-    const graphSevere =
-        document.querySelector("#graph-sore-severe");
+    const graphMild = document.querySelector("#graph-sore-mild");
+    const graphModerate = document.querySelector("#graph-sore-moderate");
+    const graphSevere = document.querySelector("#graph-sore-severe");
 
 
     if (graphMild) {
-
-        graphMild.textContent =
-            (fuzzy.mild * 100).toFixed(0) + "%";
+        graphMild.textContent = (fuzzy.mild * 100).toFixed(0) + "%";
 
     }
-
 
     if (graphModerate) {
-
-        graphModerate.textContent =
-            (fuzzy.moderate * 100).toFixed(0) + "%";
-
+        graphModerate.textContent = (fuzzy.moderate * 100).toFixed(0) + "%";
     }
 
-
     if (graphSevere) {
-
-        graphSevere.textContent =
-            (fuzzy.severe * 100).toFixed(0) + "%";
-
+        graphSevere.textContent = (fuzzy.severe * 100).toFixed(0) + "%";
     }
 
 });
@@ -172,14 +123,10 @@ soreThroatSlider.addEventListener("input", () => {
 // MAKE FUNCTION AVAILABLE TO analyze-health.js
 // =====================================================
 
-window.getSoreThroatFuzzy =
-    getSoreThroatFuzzy;
-
+window.getSoreThroatFuzzy = getSoreThroatFuzzy;
 
 // =====================================================
 // INITIAL CALCULATION
 // =====================================================
 
-soreThroatSlider.dispatchEvent(
-    new Event("input")
-);
+soreThroatSlider.dispatchEvent(new Event("input"));
